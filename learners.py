@@ -52,7 +52,7 @@ class GaussianNBLearner(AbstractLearner):
     http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html
     """
 
-    def __init__(self, alpha=1.0):
+    def __init__(self):
         self.nb = GaussianNB()
 
     def train(self, X, Y):
