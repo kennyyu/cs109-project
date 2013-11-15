@@ -1,0 +1,4 @@
+Columns present in the dataframe and their type:
+(e.g. comment (string), upvotes (float))
+
+TODO:
