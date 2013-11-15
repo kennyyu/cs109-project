@@ -84,9 +84,9 @@ class BagOfWordsModel(AbstractFeatureModel):
         # TODO: what type is new_data?
         return self.vectorizer.transform(new_data.comment)
 
-    def y_to_label(self, data, y):
+    def y_to_label(self, data, Y):
         # TODO: actually do something useful here
-        return y
+        return Y
 
 class NGramModel(AbstractFeatureModel):
     """
@@ -105,7 +105,7 @@ class NGramModel(AbstractFeatureModel):
         # TODO
         return np.array([])
 
-    def y_to_label(self, data, y):
+    def y_to_label(self, data, Y):
         # TODO
         return 0
 
@@ -126,7 +126,7 @@ class CooccurenceModel(AbstractFeatureModel):
         # TODO
         return np.array([])
 
-    def y_to_label(self, data, y):
+    def y_to_label(self, data, Y):
         # TODO
         return 0
 
