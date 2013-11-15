@@ -47,6 +47,7 @@ class AbstractFeatureModel(object):
         -------
         X : feature matrix (num rows equal to number of entries in new_data)
         """
+        pass
 
     @abstractmethod
     def y_to_label(self, data, Y):
