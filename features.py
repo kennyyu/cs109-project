@@ -85,7 +85,7 @@ class BagOfWordsModel(AbstractFeatureModel):
         return self.vectorizer.transform(new_data.comment)
 
     def y_to_label(self, data, Y):
-        # TODO: actually do something useful here
+        # TODO: actually do something useful here - haha very funny
         return Y
 
 class NGramModel(AbstractFeatureModel):
