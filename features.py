@@ -74,15 +74,15 @@ class BagOfWordsModel(AbstractFeatureModel):
         self.vectorizer = CountVectorizer(min_df=min_df)
 
     def make_training_xy(self, data):
-        # TODO: what columns do we have in data?
-        self.vectorizer.fit(list(data.comment))
-        X = self.vectorizer.transform(data.comment).tocsc()
-        Y = np.array(data.upvotes)
+        # TODO: need code to convert .txt to dataframe
+        # for now, assuming each attribute in .txt file will become a column
+        X = self.vectorizer.fit_transform(data.body)
+        X = X.tocsc()
+        Y = np.array(data.ups)
         return X,Y
 
     def data_to_x(self, new_data):
-        # TODO: what type is new_data?
-        return self.vectorizer.transform(new_data.comment)
+        return self.vectorizer.transform(new_data.body)
 
     def y_to_label(self, data, Y):
         # TODO: actually do something useful here - haha very funny

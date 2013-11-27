@@ -68,3 +68,4 @@ Additionally, the csplit program needed must be the GNU version, which has the *
         ./segment inputfile outputdir
         
     Where inputfile is the file produced from step #2, and outputdir is the name of the directory to which you'll want to put all the new information. You'll have to make the directory beforehand.
+
