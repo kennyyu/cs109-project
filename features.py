@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
+from nltk.model import NgramModel
 
 class AbstractFeatureModel(object):
     """
@@ -74,8 +75,6 @@ class BagOfWordsModel(AbstractFeatureModel):
         self.vectorizer = CountVectorizer(min_df=min_df)
 
     def make_training_xy(self, data):
-        # TODO: need code to convert .txt to dataframe
-        # for now, assuming each attribute in .txt file will become a column
         X = self.vectorizer.fit_transform(data.body)
         X = X.tocsc()
         Y = np.array(data.ups)
@@ -85,7 +84,7 @@ class BagOfWordsModel(AbstractFeatureModel):
         return self.vectorizer.transform(new_data.body)
 
     def y_to_label(self, data, Y):
-        # TODO: actually do something useful here - haha very funny
+        # TODO: don't think anything has to be done here..?
         return Y
 
 class NGramModel(AbstractFeatureModel):
@@ -94,20 +93,19 @@ class NGramModel(AbstractFeatureModel):
     """
 
     def __init__(self, n):
-        # TODO
         self.n = n
 
     def make_training_xy(self, data):
-        # TODO
-        return np.array([]), np.array([])
+        self.lm = NGramModel(self.n, data.body)
+        # TODO - how to convert lm to array?
+        Y = np.array(data.ups)
+        return np.array([]), Y)
 
     def data_to_x(self, new_data):
-        # TODO
-        return np.array([])
+        return new_data.body
 
     def y_to_label(self, data, Y):
-        # TODO
-        return 0
+        return Y
 
 class CooccurenceModel(AbstractFeatureModel):
     """
