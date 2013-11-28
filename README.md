@@ -14,7 +14,7 @@ Kenny Yu, Ali Nahm, R.J. Aquino, Joseph Ong
 There are three steps to arriving at the final dataset. First, however, let's start with dependencies. Execute the following (if you're on Ubuntu, else substitute the first line with the appropriate line to install pip).
 
     sudo apt-get install python-pip
-    sudo pip install ntlk
+    sudo pip install nltk
     sudo pip install mrjob
     sudo pip install praw
 
