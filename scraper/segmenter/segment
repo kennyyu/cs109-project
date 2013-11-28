@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if (( $# < 2 )) ; then
+    echo "Usage: ./segment filename output_dir"
+    exit 1
+fi
+
+csplit -n 5 -f $2/sr --elide-empty-files $1 "/^\"<--- SUBREDDIT/" {*} >& /dev/null
+
+for file in $2/sr*
+do
+    FILENAME=$(head -n 1 $file | sed -rn 's/"<--- SUBREDDIT (.*) --->"/\1/p')
+    mv $file $2/$FILENAME
+    sed -i 1d $2/$FILENAME
+done
