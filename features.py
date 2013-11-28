@@ -1,7 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
-from nltk.model import NgramModel
 
 class AbstractFeatureModel(object):
     """
@@ -94,15 +93,16 @@ class NGramModel(AbstractFeatureModel):
 
     def __init__(self, n):
         self.n = n
+        self.ngram_vectorizer = CountVectorizer(ngram_range=(n,n), min_df=min_df)
 
     def make_training_xy(self, data):
-        self.lm = NGramModel(self.n, data.body)
-        # TODO - how to convert lm to array?
+        X = self.vectorizer.fit_transform(data.body)
+        X = X.tocsc()
         Y = np.array(data.ups)
-        return np.array([]), Y)
+        return X, Y
 
     def data_to_x(self, new_data):
-        return new_data.body
+        return self.vectorizer.transform(new_data.body)
 
     def y_to_label(self, data, Y):
         return Y
