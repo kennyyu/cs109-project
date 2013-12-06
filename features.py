@@ -76,15 +76,14 @@ class BagOfWordsModel(AbstractFeatureModel):
     def make_training_xy(self, data):
         X = self.vectorizer.fit_transform(data.body)
         X = X.tocsc()
-        Y = np.array(data.ups)
+        Y = normalize_scores(data.ups, data.subreddit[0])
         return X,Y
 
     def data_to_x(self, new_data):
         return self.vectorizer.transform(new_data.body)
 
     def y_to_label(self, data, Y):
-        # TODO: don't think anything has to be done here..?
-        return Y
+        return np.array(data.ups)
 
 class NGramModel(AbstractFeatureModel):
     """
@@ -98,14 +97,14 @@ class NGramModel(AbstractFeatureModel):
     def make_training_xy(self, data):
         X = self.vectorizer.fit_transform(data.body)
         X = X.tocsc()
-        Y = np.array(data.ups)
+        Y = normalize_scores(data.ups, data.subreddit[0])
         return X, Y
 
     def data_to_x(self, new_data):
         return self.vectorizer.transform(new_data.body)
 
     def y_to_label(self, data, Y):
-        return Y
+        return np.array(data.ups)
 
 class CooccurenceModel(AbstractFeatureModel):
     """
@@ -128,4 +127,20 @@ class CooccurenceModel(AbstractFeatureModel):
         # TODO
         return 0
 
+"""
+normalize_scores
+    Normalizes the score based on the max upvotes in the given subreddit.
+
+    @param: ups (array of upvote scores), subreddit (name of subreddit)
+    @ret: array of normalized scores
+"""
+def normalize_scores(ups, subreddit):
+    topscores = {'liberal': 106, 'videos': 10341, 'gentlemanboners': 1619,
+            'books': 4914, 'Music': 7286, 'politics': 15133, 'nba': 4108,
+            'pokemon': 3270, 'funny': 9633, 'technology': 10848, 'conservative':
+            438, 'food': 3358, 'WTF': 11107, 'worldnews': 10559, 'soccer': 2985,
+            'gaming': 16413, 'aww': 7656, 'circlejerk': 3069, 'ladyboners':
+            1190, 'news': 10995, 'television': 9274, 'science': 8965, 'nfl':
+            5416, 'pics': 19196, 'movies': 93504}
+    return [float(x)/topscores[subreddit] for x in ups]
 
