@@ -189,6 +189,13 @@ normalize_scores
     @ret: array of normalized scores
 """
 def normalize_scores(ups, subreddit):
+    topscores = {'Liberal': 106, 'videos': 10341, 'gentlemanboners': 1619,
+            'books': 4914, 'Music': 7286, 'politics': 15133, 'nba': 4108,
+            'pokemon': 3270, 'funny': 9633, 'technology': 10848, 'conservative':
+            438, 'food': 3358, 'WTF': 11107, 'worldnews': 10559, 'soccer': 2985,
+            'gaming': 16413, 'aww': 7656, 'circlejerk': 3069, 'ladyboners':
+            1190, 'news': 10995, 'television': 9274, 'science': 8965, 'nfl':
+            5416, 'pics': 19196, 'movies': 93504}
     return [float(x)/topscores[subreddit] for x in ups]
 
 def denormalize_scores(norms, subreddit):

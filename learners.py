@@ -50,16 +50,18 @@ class GaussianNBLearner(AbstractLearner):
     Gaussian Naive Bayes Learner
 
     http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html
+
+    We need to use X.toarray() because those functions expect dense arrays.
     """
 
     def __init__(self):
         self.nb = GaussianNB()
 
     def train(self, X, Y):
-        self.nb.fit(X, Y)
+        self.nb.fit(X.toarray(), Y)
 
     def predict(self, X):
-        return self.nb.predict(X)
+        return self.nb.predict(X.toarray())
 
 class SVMLearner(AbstractLearner):
     """
