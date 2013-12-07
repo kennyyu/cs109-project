@@ -55,7 +55,8 @@ if __name__ == "__main__":
     model = features.BagOfWordsModel()
     #model = features.NGramModel(2)
     #model = features.CooccurenceModel()
-    reducer = reduction.KernelPCAReduction(2)
+    #reducer = reduction.KernelPCAReduction(2)
+    reducer = reduction.SelectKBestReduction(1000)
     learner = learners.GaussianNBLearner()
 #    learner = learners.MultiNBLearner(nbuckets=int(features.denormalize_scores([1.], 'Liberal')[0]))
 #    learner = learners.SVMLearner(kernel='linear')
@@ -72,9 +73,9 @@ if __name__ == "__main__":
 
     # Reduce the dimensionality of our training set
     print "reducing dimensionality..."
-#    reducer.fit(X_train)
-#    X_train_red = reducer.transform(X_train)
-    X_train_red = X_train
+    reducer.fit(X_train, Y_train)
+    X_train_red = reducer.transform(X_train)
+#    X_train_red = X_train
 
     # Train our learner
     print "training our learner..."
@@ -87,9 +88,9 @@ if __name__ == "__main__":
                            'subreddit' : ['Liberal'] * len(words)})
     print "getting some test data..."
     X_test = model.data_to_x(new_df)
-#    X_test_red = reducer.transform(X_test)
+    X_test_red = reducer.transform(X_test)
     print "test X:", X_test
-    X_test_red = X_test
+#    X_test_red = X_test
 
     # Use our learner to predict the new data's label
     print "predicting test label..."

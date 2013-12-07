@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from sklearn.decomposition import KernelPCA
+from sklearn.feature_selection import SelectKBest, chi2, f_regression
 
 class AbstractReduction(object):
     """
@@ -23,7 +24,7 @@ class AbstractReduction(object):
         pass
 
     @abstractmethod
-    def fit(self, X):
+    def fit(self, X, Y=None):
         """
         Fit the estimator to this data set. This must be called exactly ONCE
         to have consistent results when we call transform().
@@ -31,6 +32,7 @@ class AbstractReduction(object):
         Args
         ----
         X : feature matrix (n_comments x n_features)
+        Y : values to fit to
 
         Returns
         -------
@@ -67,9 +69,30 @@ class KernelPCAReduction(AbstractReduction):
     def n_components(self):
         return self.n_components
 
-    def fit(self, X):
+    def fit(self, X, Y=None):
         self.pca.fit(X)
 
     def transform(self, X):
         return self.pca.transform(X)
 
+class SelectKBestReduction(AbstractReduction):
+    """
+    Select K Best features using chi metric
+
+    http://stackoverflow.com/questions/10098533/implementing-bag-of-words-naive-bayes-classifier-in-nltk
+    http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html
+    http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html
+    """
+
+    def __init__(self, n_components, score_func=lambda X, y: f_regression(X, y, center=False)):
+        self.select = SelectKBest(score_func=score_func, k=n_components)
+        self.n_components = n_components
+
+    def n_components(self):
+        return self.n_components
+
+    def fit(self, X, Y=None):
+        self.select.fit(X, Y)
+
+    def transform(self, X):
+        return self.select.transform(X)
