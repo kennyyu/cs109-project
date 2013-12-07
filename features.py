@@ -100,9 +100,9 @@ class NGramModel(AbstractFeatureModel):
     n-gram model for analyzing text
     """
 
-    def __init__(self, n):
+    def __init__(self, n, min_df=0):
         self.n = n
-        self.ngram_vectorizer = CountVectorizer(ngram_range=(n,n), min_df=min_df)
+        self.vectorizer = CountVectorizer(ngram_range=(n,n), min_df=min_df)
 
     def make_training_xy(self, data):
         X = self.vectorizer.fit_transform(data.body)
