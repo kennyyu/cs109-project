@@ -12,6 +12,14 @@ topscores = {'liberal': 106, 'videos': 10341, 'gentlemanboners': 1619, 'books':
         'movies': 93504}
 
 
+topscores = {'Liberal': 106, 'videos': 10341, 'gentlemanboners': 1619, 'books':
+        4914, 'Music': 7286, 'politics': 15133, 'nba': 4108, 'pokemon': 3270,
+        'funny': 9633, 'technology': 10848, 'Conservative': 438, 'food': 3358,
+        'WTF': 11107, 'worldnews': 10559, 'soccer': 2985, 'gaming': 16413,
+        'aww': 7656, 'circlejerk': 3069, 'LadyBoners': 1190, 'news': 10995,
+        'television': 9274, 'science': 8965, 'nfl': 5416, 'pics': 19196,
+        'movies': 93504}
+
 class AbstractFeatureModel(object):
     """
     Interface for all feature extractors. Extend this class to
