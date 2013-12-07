@@ -13,8 +13,9 @@ if __name__ == "__main__":
     learner = learners.GaussianNBLearner()
 
     # TODO: use real data
-    df = pd.DataFrame({'comment' : ['Hop on pop', 'Hop off pop', 'Hop Hop hop'],
-                       'upvotes' : [0, 1, 0]})
+    df = pd.DataFrame({'body' : ['Hop on pop', 'Hop off pop', 'Hop Hop hop'],
+                       'ups' : [0, 1, 0],
+                       'subreddit' : ['liberal', 'liberal', 'liberal']})
 
     # Make the training set
     X_train, Y_train = model.make_training_xy(df)
@@ -27,7 +28,8 @@ if __name__ == "__main__":
     learner.train(X_train_red, Y_train)
 
     # Get test data/data from user
-    new_df = pd.DataFrame({'comment' : ['pop off', 'hop hop pop']})
+    new_df = pd.DataFrame({'body' : ['pop off', 'hop hop pop'],
+                           'liberal' : ['liberal', 'liberal']})
     X_test = model.data_to_x(new_df)
     X_test_red = reducer.transform(X_test)
 
