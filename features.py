@@ -1,5 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
+from gensim import corpora
+from gensim.models import ldamodel
 from scipy.sparse import vstack
 from sklearn.feature_extraction.text import CountVectorizer
 from utils import *
@@ -115,6 +117,69 @@ class NGramModel(AbstractFeatureModel):
 
     def y_to_label(self, data, Y):
         return denormalize_scores(Y, data.subreddit[0])
+
+class LdaFeatureModel(AbstractFeatureModel):
+    """
+    LDA Topic model
+    """
+    def __init__(self, num_topics=10, printing=True):
+        self.lda = None
+        self.num_topics = num_topics
+        self.printing = printing
+
+
+    def make_training_xy(self, data):
+        # convert data to "docs" for lda
+        docs = []
+        for post in data.body:
+            docs.append(post.split(" "))
+
+        # make LDA model
+        self.dictionary = corpora.Dictionary(docs)
+        corpus = [self.dictionary.doc2bow(doc) for doc in docs]
+        self.lda = ldamodel.LdaModel(corpus, id2word=self.dictionary, num_topics=self.num_topics)
+
+        if self.printing:
+            print "LDA Topics:"
+            for topic in xrange(self.num_topics):
+                print "Topic #{}".format(topic),
+                print self.lda.print_topic(topic)
+
+        # make X and Y
+        X = self.docs_to_lda_matrix(docs)
+        Y = normalize_scores(data.ups, data.subreddit[0])
+
+        return np.array(X), Y
+
+    def data_to_x(self, new_data):
+        # convert data to "docs" for lda
+        docs = []
+        for post in new_data.body:
+            docs.append(post.split(" "))
+
+        # make X
+        X = self.docs_to_lda_matrix(docs)
+
+        return np.array(X)
+
+    def y_to_label(self, data, Y):
+        return denormalize_scores(Y, data.subreddit[0])
+
+    def docs_to_lda_matrix(self, docs):
+        res = []
+        for doc in docs:
+            row = [0.0] * self.num_topics
+            pred = self.lda[self.dictionary.doc2bow(doc)]
+
+            # iterate over topic prediction tuples
+            for t in pred:
+                row[t[0]] = t[1]
+
+            # add row
+            res.append(row)
+        return res
+
+
 
 class CooccurenceModel(AbstractFeatureModel):
     """
