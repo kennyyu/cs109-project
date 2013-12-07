@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
+from scipy.sparse import vstack
 from sklearn.feature_extraction.text import CountVectorizer
+from utils import *
 
 class AbstractFeatureModel(object):
     """
@@ -111,17 +113,61 @@ class CooccurenceModel(AbstractFeatureModel):
     Cooccurence model for analyzing text
     """
 
-    def __init__(self):
-        # TODO
+    def __init__(self, min_df=0):
+        # build bag of words model
+        self.bow_model = BagOfWordsModel(min_df)
         pass
 
     def make_training_xy(self, data):
-        # TODO
-        return np.array([]), np.array([])
+        # get X/Y from bow_model
+        bow_X, bow_Y = self.bow_model.make_training_xy(data)
+
+        num_rows = bow_X.shape[0]
+        num_features = bow_X.shape[1]
+
+        # store sparse rows in a list
+        rows = []
+
+        # iterate over sparse rows
+        for i in xrange(num_rows):
+            # multiply X with itself to get coccurrence matrix
+            bow_X_col = bow_X.transpose(copy=True)
+
+            # reshape into a single row, and add to rows array
+            cooc_matrix_row = coo_reshape(bow_X_col.getcol(0) * bow_X.getrow(0), (num_features * num_features, 1)).tocsc()
+
+            rows.append(cooc_matrix_row)
+
+        # build Y
+        # multiply X with itself to get coccurrence matrix
+        print bow_Y
+        bow_Y_col = bow_Y.transpose()
+        print bow_Y_col
+
+        # reshape into a single row, and add to rows array
+        cooc_Y_matrix = bow_Y_col * bow_Y
+        print bow_Y.shape
+        cooc_Y = (bow_Y_col * bow_Y).reshape(num_features * num_features, 1)
+
+        rows.append(cooc_matrix_row)
+
+        # stack rows
+        cooc_matrix = vstack(rows)
+
+        # return TODO: should we remove duplicates? e.g. A/B and B/A?
+        return cooc_matrix, cooc_Y
 
     def data_to_x(self, new_data):
-        # TODO
-        return np.array([])
+        # get counts from bow model
+        box_X = self.bow_model.data_to_x(new_data)
+        # multiply X with itself to get coccurrence matrix
+        bow_X_col = bow_X.transpose(copy=True)
+
+        # reshape into a single row, and add to rows array
+        cooc_matrix_row = coo_reshape(bow_X_col.getcol(0) * bow_X.getrow(0), (num_features * num_features, 1)).tocsc()
+
+        # return
+        return cooc_matrix_row
 
     def y_to_label(self, data, Y):
         # TODO

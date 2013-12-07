@@ -8,7 +8,8 @@ import reduction
 import pandas as pd
 
 if __name__ == "__main__":
-    model = features.BagOfWordsModel(1)
+    #model = features.BagOfWordsModel()
+    model = features.CooccurenceModel()
     reducer = reduction.KernelPCAReduction(2)
     learner = learners.GaussianNBLearner()
 
@@ -19,6 +20,8 @@ if __name__ == "__main__":
 
     # Make the training set
     X_train, Y_train = model.make_training_xy(df)
+    print "X_train shape", X_train.shape
+    print "Y_train shape", Y_train.shape
 
     # Reduce the dimensionality of our training set
     reducer.fit(X_train)
