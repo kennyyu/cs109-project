@@ -165,8 +165,7 @@ class CooccurenceModel(AbstractFeatureModel):
         return cooc_matrix_row
 
     def y_to_label(self, data, Y):
-        # TODO
-        return 0
+        return denormalize_scores(Y, data.subreddit[0])
 
 """
 normalize_scores
