@@ -59,10 +59,17 @@ class GaussianNBLearner(AbstractLearner):
         self.nb = GaussianNB()
 
     def train(self, X, Y):
-        self.nb.fit(X.toarray(), Y)
+        if hasattr(X, 'toarray'):
+            self.nb.fit(X.toarray(), Y)
+        else:
+            self.nb.fit(X, Y)
 
     def predict(self, X):
-        return self.nb.predict(X.toarray())
+        if hasattr(X, 'toarray'):
+            return self.nb.predict(X.toarray())
+        else:
+            return self.nb.predict(X)
+
 
 class SVMLearner(AbstractLearner):
     """
