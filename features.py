@@ -83,7 +83,7 @@ class BagOfWordsModel(AbstractFeatureModel):
     """
 
     def __init__(self, min_df=0, tfidf=True):
-        self.vectorizer = CountVectorizer(min_df=min_df)
+        self.vectorizer = CountVectorizer(min_df=min_df, stop_words='english')
         self.tfidf = tfidf
 
     def make_training_xy(self, data):
@@ -108,7 +108,7 @@ class NGramModel(AbstractFeatureModel):
     def __init__(self, n, min_df=0, tfidf=True):
         self.n = n
         self.tfidf = tfidf
-        self.vectorizer = CountVectorizer(ngram_range=(n,n), min_df=min_df)
+        self.vectorizer = CountVectorizer(ngram_range=(n,n), min_df=min_df, stop_words='english')
 
     def make_training_xy(self, data):
         X = self.vectorizer.fit_transform(data.body)

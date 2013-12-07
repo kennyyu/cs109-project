@@ -10,6 +10,7 @@ import pandas as pd
 from sklearn import cross_validation
 import json
 import numpy as np
+import unsupervised
 
 """
 Data format:
@@ -52,8 +53,8 @@ def load_subreddit(filename, fields=FIELDS):
     return df
 
 if __name__ == "__main__":
-    #model = features.BagOfWordsModel(tfidf)
-    model = features.NGramModel(2)
+    model = features.BagOfWordsModel(tfidf=True)
+    #model = features.NGramModel(2)
     #model = features.CooccurenceModel()
     #reducer = reduction.KernelPCAReduction(2)
     reducer = reduction.SelectKBestReduction(10000)
@@ -102,6 +103,11 @@ if __name__ == "__main__":
 
     for word, label in zip(words, new_label):
         print label, word
+
+    print "clustering within subreddit..."
+    n_clusters = 8
+    print "num clusters:", n_clusters
+    unsupervised.cluster_within_subreddit(df, X_train_red, n_clusters)
 
     # see how well this model generalizes
     # test_performance(df)
