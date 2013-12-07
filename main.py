@@ -52,11 +52,11 @@ def load_subreddit(filename, fields=FIELDS):
     return df
 
 if __name__ == "__main__":
-    model = features.BagOfWordsModel()
-    #model = features.NGramModel(2)
+    #model = features.BagOfWordsModel()
+    model = features.NGramModel(2)
     #model = features.CooccurenceModel()
     #reducer = reduction.KernelPCAReduction(2)
-    reducer = reduction.SelectKBestReduction(1000)
+    reducer = reduction.SelectKBestReduction(15000)
     learner = learners.GaussianNBLearner()
 #    learner = learners.MultiNBLearner(nbuckets=int(features.denormalize_scores([1.], 'Liberal')[0]))
 #    learner = learners.SVMLearner(kernel='linear')
@@ -82,8 +82,14 @@ if __name__ == "__main__":
     learner.train(X_train_red, Y_train)
 
     # Get test data/data from user
-    words = ['pop off', 'hop hop pop', 'republican good', 'pro life', 'Mitt Romney', 'stupid Republican',
-             'I hate same sex marriage', 'I hate guns']
+    words = ['pop off', 'hop hop pop', 'republican good', 'pro life',
+             'Mitt Romney', 'stupid Republican',
+             'I hate same sex marriage', 'I hate guns',
+             'Barack Obama', 'the Senate', 'bipartisanship',
+             'poor people', 'minimum wage', 'healthcare', 'obamacare',
+             'obamacare sucks', 'obamacare is great',
+             'need obamacare']
+    words = [s.lower() for s in words]
     new_df = pd.DataFrame({'body' : words,
                            'subreddit' : ['Liberal'] * len(words)})
     print "getting some test data..."
@@ -97,8 +103,8 @@ if __name__ == "__main__":
     Y_test = learner.predict(X_test_red)
     print "test Y:", Y_test
     new_label = model.y_to_label(df, Y_test)
-    print words
-    print new_label
+    for word, label in zip(words, new_label):
+        print label, word
 
     # see how well this model generalizes
     # test_performance(df)
