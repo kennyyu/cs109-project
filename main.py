@@ -53,14 +53,17 @@ def load_subreddit(filename, fields=FIELDS):
 
 if __name__ == "__main__":
     model = features.BagOfWordsModel()
+    #model = features.NGramModel(2)
     #model = features.CooccurenceModel()
     reducer = reduction.KernelPCAReduction(2)
     learner = learners.GaussianNBLearner()
+#    learner = learners.SVMLearner(kernel='linear')
 
     data_file = "data/Liberal.txt"
     df = load_subreddit(data_file)
     print df.head(5)
     print "num rows:", len(df.index)
+    print "max up:", features.denormalize_scores([1.], 'Liberal')
 
     # Make the training set
     print "making training data..."
@@ -77,8 +80,10 @@ if __name__ == "__main__":
     learner.train(X_train_red, Y_train)
 
     # Get test data/data from user
-    new_df = pd.DataFrame({'body' : ['pop off', 'hop hop pop'],
-                           'subreddit' : ['Liberal', 'Liberal']})
+    words = ['pop off', 'hop hop pop', 'republican good', 'pro life', 'Mitt Romney', 'stupid Republican',
+             'I hate same sex marriage', 'I hate guns']
+    new_df = pd.DataFrame({'body' : words,
+                           'subreddit' : ['Liberal'] * len(words)})
     print "getting some test data..."
     X_test = model.data_to_x(new_df)
 #    X_test_red = reducer.transform(X_test)
@@ -90,6 +95,7 @@ if __name__ == "__main__":
     Y_test = learner.predict(X_test_red)
     print "test Y:", Y_test
     new_label = model.y_to_label(df, Y_test)
+    print words
     print new_label
 
     # see how well this model generalizes
