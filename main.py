@@ -63,7 +63,6 @@ if __name__ == "__main__":
 
     data_file = "data/Liberal.txt"
     df = load_subreddit(data_file)
-    df = df.head(10)
     print df.head(5)
     print "num rows:", len(df.index)
     print "max up:", features.denormalize_scores([1.], 'Liberal')
