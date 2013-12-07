@@ -5,14 +5,19 @@ TODO:
 
 Info present in .txt files and their type:
 {
-    "body": (string),
-    "subreddit_id": (string),
-    "author": (string),
-    "downs": (int),
-    "created": (float? timestamp?) - eg. 1232129344.0,
-    "subreddit": (string),
-    "parent_id": (string),
-    "id" : (string),
-    "net": (int),
-    "ups": (int)
+  "body": string
+  "post_ups": int
+  "subreddit_id": string
+  "created": float (timestamp)
+  "downs": int
+  "author": string
+  "post_net": int
+  "subreddit": string
+  "post_id": string
+  "post_downs": int
+  "net": int
+  "ups": int
+  "id": string
+  "post_created": float
 }
+
