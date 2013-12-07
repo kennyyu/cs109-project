@@ -3,7 +3,7 @@ import numpy as np
 from gensim import corpora
 from gensim.models import ldamodel
 from scipy.sparse import vstack
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from utils import *
 
 topscores = {'Liberal': 106, 'videos': 10341, 'gentlemanboners': 1619, 'books':
@@ -82,11 +82,14 @@ class BagOfWordsModel(AbstractFeatureModel):
     Bag of words model. This is only an example. TODO
     """
 
-    def __init__(self, min_df=0):
+    def __init__(self, min_df=0, tfidf=True):
         self.vectorizer = CountVectorizer(min_df=min_df)
+        self.tfidf = tfidf
 
     def make_training_xy(self, data):
         X = self.vectorizer.fit_transform(data.body)
+        if self.tfidf:
+            X = TfidfTransformer().fit_transform(X)
         X = X.tocsc()
         Y = normalize_scores(data.ups, data.subreddit[0])
         return X,Y
@@ -102,12 +105,15 @@ class NGramModel(AbstractFeatureModel):
     n-gram model for analyzing text
     """
 
-    def __init__(self, n, min_df=0):
+    def __init__(self, n, min_df=0, tfidf=True):
         self.n = n
+        self.tfidf = tfidf
         self.vectorizer = CountVectorizer(ngram_range=(n,n), min_df=min_df)
 
     def make_training_xy(self, data):
         X = self.vectorizer.fit_transform(data.body)
+        if self.tfidf:
+            X = TfidfTransformer().fit_transform(X)
         X = X.tocsc()
         Y = normalize_scores(data.ups, data.subreddit[0])
         return X, Y

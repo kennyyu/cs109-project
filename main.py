@@ -52,11 +52,11 @@ def load_subreddit(filename, fields=FIELDS):
     return df
 
 if __name__ == "__main__":
-    #model = features.BagOfWordsModel()
+    #model = features.BagOfWordsModel(tfidf)
     model = features.NGramModel(2)
     #model = features.CooccurenceModel()
     #reducer = reduction.KernelPCAReduction(2)
-    reducer = reduction.SelectKBestReduction(15000)
+    reducer = reduction.SelectKBestReduction(10000)
     learner = learners.GaussianNBLearner()
 #    learner = learners.MultiNBLearner(nbuckets=int(features.denormalize_scores([1.], 'Liberal')[0]))
 #    learner = learners.SVMLearner(kernel='linear')
@@ -76,7 +76,6 @@ if __name__ == "__main__":
     print "reducing dimensionality..."
     reducer.fit(X_train, Y_train)
     X_train_red = reducer.transform(X_train)
-#    X_train_red = X_train
 
     # Train our learner
     print "training our learner..."
@@ -96,14 +95,12 @@ if __name__ == "__main__":
     print "getting some test data..."
     X_test = model.data_to_x(new_df)
     X_test_red = reducer.transform(X_test)
-    print "test X:", X_test
-#    X_test_red = X_test
 
     # Use our learner to predict the new data's label
     print "predicting test label..."
     Y_test = learner.predict(X_test_red)
-    print "test Y:", Y_test
     new_label = model.y_to_label(df, Y_test)
+
     for word, label in zip(words, new_label):
         print label, word
 
