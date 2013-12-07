@@ -57,6 +57,7 @@ if __name__ == "__main__":
     #model = features.CooccurenceModel()
     reducer = reduction.KernelPCAReduction(2)
     learner = learners.GaussianNBLearner()
+#    learner = learners.MultiNBLearner(nbuckets=int(features.denormalize_scores([1.], 'Liberal')[0]))
 #    learner = learners.SVMLearner(kernel='linear')
 
     data_file = "data/Liberal.txt"

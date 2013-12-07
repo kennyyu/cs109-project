@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.svm import SVR
+import numpy as np
 
 class AbstractLearner(object):
     """
@@ -80,3 +81,24 @@ class SVMLearner(AbstractLearner):
     def predict(self, X):
         return self.svr.predict(X)
 
+class MultiNBLearner(AbstractLearner):
+    """
+    Multinomial Naive Bayes Learner
+
+    http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html
+
+    """
+
+    def __init__(self, nbuckets, **kwargs):
+        self.nb = MultinomialNB(**kwargs)
+        self.nbuckets = nbuckets
+
+    def train(self, X, Y):
+        newY = [0 for _ in range(len(Y))]
+        for i, y in enumerate(Y):
+            bucket = np.floor(y * self.nbuckets)
+            newY[i] = bucket
+        self.nb.fit(X, np.array(newY))
+
+    def predict(self, X):
+        return self.nb.predict(X)
