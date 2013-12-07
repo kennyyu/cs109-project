@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from sklearn.decomposition import KernelPCA
 from sklearn.feature_selection import SelectKBest, chi2, f_regression
+from sklearn.decomposition import RandomizedPCA
+from sklearn.decomposition import TruncatedSVD
 
 class AbstractReduction(object):
     """
@@ -96,3 +98,43 @@ class SelectKBestReduction(AbstractReduction):
 
     def transform(self, X):
         return self.select.transform(X)
+    
+class RandomizedPCAReduction(AbstractReduction):
+    """
+    Use Randomized PCA to reduce dimensionality
+
+    http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.RandomizedPCA.html
+    """
+
+    def __init__(self, n_components, **kwargs):
+        self.pca = RandomizedPCA(n_components=n_components, **kwargs)
+
+    def n_components(self):
+        return self.n_components
+    
+    def fit(self, X):
+        self.pca.fit(X)
+
+    def transform(self, X):
+        return self.pca.transform(X)
+
+
+class TruncatedSVDReduction(AbstractReduction):
+    """
+    Use Randomized PCA to reduce dimensionality
+
+    http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html
+    """
+
+    def __init__(self, n_components, **kwargs):
+        self.pca = TruncatedSVD(n_components=n_components, **kwargs)
+        self.n_components = n_components
+
+    def n_components(self):
+        return self.n_components
+
+    def fit(self, X):
+        self.pca.fit(X)
+
+    def transform(self, X):
+        return self.pca.transform(X)

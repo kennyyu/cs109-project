@@ -52,17 +52,50 @@ def load_subreddit(filename, fields=FIELDS):
     file.close()
     return df
 
+def test_performance(df, model, learner, reducer, n_folds):
+    """
+    Does cross validation on the dataframe, with n_folds.
+    """
+    
+    # transform the input data into feature vectors and labels
+    X, y = model.make_training_xy(df)
+    kfolds = cross_validation.KFold(len(df.index), n_folds)
+
+    # for each of the folds, create a training and test set
+    fold = 1
+    for train_index, test_index in kfolds:
+        X_train, X_test = X[train_index], X[test_index]
+        y_train, y_test = list(np.asarray(y)[train_index]), list(np.asarray(y)[test_index])
+
+        # Reduce the dimensionality of our training set
+        reducer.fit(X_train)
+        X_train_red = reducer.transform(X_train)
+
+        # Train our learner on the reduced features
+        learner.train(X_train_red, y_train)
+
+        # Apply the same dimensionality reduction to the test set's features
+        # test the performance of the model on the test set
+        X_test_red = reducer.transform(X_test)
+        score = learner.score(X_test_red, y_test)
+
+        print "--------------"
+        print "MEAN ERROR " + str(fold) + ": " + str(model.y_to_label(df, [score]))
+        fold = fold + 1
+    print "--------------"
+
 if __name__ == "__main__":
     model = features.BagOfWordsModel(tfidf=True)
-    #model = features.NGramModel(2)
-    #model = features.CooccurenceModel()
-    #reducer = reduction.KernelPCAReduction(2)
+    # model = features.NGramModel(2)
+    # model = features.CooccurenceModel()
+    # reducer = reduction.KernelPCAReduction(2)
     reducer = reduction.SelectKBestReduction(10000)
+    # reducer = reduction.TruncatedSVDReduction(2)
     learner = learners.GaussianNBLearner()
-#    learner = learners.MultiNBLearner(nbuckets=int(features.denormalize_scores([1.], 'Liberal')[0]))
-#    learner = learners.SVMLearner(kernel='linear')
+    # learner = learners.MultiNBLearner(nbuckets=int(features.denormalize_scores([1.], 'Liberal')[0]))
+    # learner = learners.SVMLearner(kernel='linear')
 
-    data_file = "data/Liberal.txt"
+    data_file = "data/Liberal"
     df = load_subreddit(data_file)
     print df.head(5)
     print "num rows:", len(df.index)
@@ -110,34 +143,8 @@ if __name__ == "__main__":
     unsupervised.cluster_within_subreddit(df, X_train_red, n_clusters)
 
     # see how well this model generalizes
-    # test_performance(df)
+    # test_performance(df, model, learner, reducer, 5)
+    # exit(0)
 
-def test_performance(df):
-    # transform the input data into feature vectors and labels
-    X, Y = model.make_training_xy(df)
-    kfolds = cross_validation.KFold(len(df.body), n_folds)
 
-    # for each of the folds, create a training and test set
-    for train_index, test_index in kf:
-        X_train, X_test = X[train_index], X[test_index]
-        y_train, y_test = Y[train_index], y[test_index]
-
-        # Reduce the dimensionality of our training set
-        reducer.fit(X_train)
-        X_train_red = reducer.transform(X_train)
-
-        # Train our learner on the reduced features
-        learner.train(X_train_red, Y_train)
-
-        # Apply the same dimensionality reduction to the test set's features
-        # test the performance of the model on the test set
-        X_test_red = reducer.transform(X_test)
-        score = learner.score(X_test_red, y_test)
-
-        print
-        print "--------------"
-        print "TRAINING INDEX:" + str(train_index)
-        print "TEST INDEX:    " + str(test_index)
-        print "SCORE:         " + str(score)
-        print "--------------"
-        print
+    print new_label

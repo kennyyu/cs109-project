@@ -65,12 +65,14 @@ class GaussianNBLearner(AbstractLearner):
             self.nb.fit(X, Y)
 
     def predict(self, X):
-        if hasattr(X, 'toarray'):
+        if (hasattr(X, "toarray")):
             return self.nb.predict(X.toarray())
         else:
             return self.nb.predict(X)
 
-
+    def score(self, X, Y):
+        return np.mean(np.abs(self.nb.predict(X) - np.array(Y)))
+    
 class SVMLearner(AbstractLearner):
     """
     Support Vector Machine Learner for regression (continuous
