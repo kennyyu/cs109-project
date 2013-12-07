@@ -142,28 +142,15 @@ class CooccurenceModel(AbstractFeatureModel):
             bow_X_col = bow_X.transpose(copy=True)
 
             # reshape into a single row, and add to rows array
-            cooc_matrix_row = coo_reshape(bow_X_col.getcol(0) * bow_X.getrow(0), (num_features * num_features, 1)).tocsc()
+            cooc_matrix_row = coo_reshape(bow_X_col.getcol(0) * bow_X.getrow(0), (1, num_features * num_features)).tocsc()
 
             rows.append(cooc_matrix_row)
-
-        # build Y
-        # multiply X with itself to get coccurrence matrix
-        print bow_Y
-        bow_Y_col = bow_Y.transpose()
-        print bow_Y_col
-
-        # reshape into a single row, and add to rows array
-        cooc_Y_matrix = bow_Y_col * bow_Y
-        print bow_Y.shape
-        cooc_Y = (bow_Y_col * bow_Y).reshape(num_features * num_features, 1)
-
-        rows.append(cooc_matrix_row)
 
         # stack rows
         cooc_matrix = vstack(rows)
 
         # return TODO: should we remove duplicates? e.g. A/B and B/A?
-        return cooc_matrix, cooc_Y
+        return cooc_matrix, bow_Y
 
     def data_to_x(self, new_data):
         # get counts from bow model
@@ -172,7 +159,7 @@ class CooccurenceModel(AbstractFeatureModel):
         bow_X_col = bow_X.transpose(copy=True)
 
         # reshape into a single row, and add to rows array
-        cooc_matrix_row = coo_reshape(bow_X_col.getcol(0) * bow_X.getrow(0), (num_features * num_features, 1)).tocsc()
+        cooc_matrix_row = coo_reshape(bow_X_col.getcol(0) * bow_X.getrow(0), (1, num_features * num_features)).tocsc()
 
         # return
         return cooc_matrix_row
