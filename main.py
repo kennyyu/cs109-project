@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     # Get test data/data from user
     new_df = pd.DataFrame({'body' : ['pop off', 'hop hop pop'],
-                           'subreddit' : ['liberal', 'liberal']})
+                           'subreddit' : ['Liberal', 'Liberal']})
     print "getting some test data..."
     X_test = model.data_to_x(new_df)
 #    X_test_red = reducer.transform(X_test)
