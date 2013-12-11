@@ -1,0 +1,56 @@
+@import "mixins";
+
+@font-face {
+    font-family: 'Bariol';
+    src: url('/css/fonts/bariol/bariol_regular-webfont.eot');
+    src: url('/css/fonts/bariol/bariol_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/bariol/bariol_regular-webfont.woff') format('woff'),
+         url('/css/fonts/bariol/bariol_regular-webfont.ttf') format('truetype'),
+         url('/css/fonts/bariol/bariol_regular-webfont.svg#BariolRegularRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    overflow: auto;
+}
+
+body {
+    overflow: hidden;
+}
+
+body, html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 1100px;
+    font-family: 'Bariol';
+    margin: 0px;
+    padding: 0px;
+}
+
+input, textarea, select {
+    font-family: 'Bariol';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+li {
+    list-style: none;
+}
+
+tr {
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+select {
+    -webkit-appearance: none; 
+    border: none;
+}
