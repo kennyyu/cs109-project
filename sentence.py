@@ -73,10 +73,13 @@ def build_sentence(start, nwords, ngram_freq, random=False):
     return sentence
 
 if __name__ == '__main__':
-    model = features.NGramModel(2)
+    ngram = 2
+    model = features.NGramModel(ngram)
+    print "N used for ngram: %d" % ngram
 
     data_file = "data/Liberal"
     df = load_subreddit(data_file)
+    print "loaded: %s" % data_file
 
     # Make the training set
     print "making training data..."
