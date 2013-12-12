@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import features
 from main import load_subreddit
@@ -73,11 +74,18 @@ def build_sentence(start, nwords, ngram_freq, random=False):
     return sentence
 
 if __name__ == '__main__':
-    ngram = 2
+    parser = argparse.ArgumentParser("sentence builder")
+    parser.add_argument("subreddit", help="path to subreddit file", type=str)
+    parser.add_argument("ngram", help="N to use", type=int)
+    parser.add_argument("--start", help="starting word", type=str,
+                        dest="start", default="")
+    args = vars(parser.parse_args())
+
+    ngram = args["ngram"]
     model = features.NGramModel(ngram)
     print "N used for ngram: %d" % ngram
 
-    data_file = "data/Liberal"
+    data_file = args["subreddit"]
     df = load_subreddit(data_file)
     print "loaded: %s" % data_file
 
@@ -94,14 +102,18 @@ if __name__ == '__main__':
         sentence = build_sentence(start, nwords, ngram_freq, random=random)
         print " ".join(sentence)
 
-    print_trial("obama", nwords, False)
-    print_trial("obama", nwords, True)
-    print_trial("liberal", nwords, False)
-    print_trial("liberal", nwords, True)
-    print_trial("liberals", nwords, False)
-    print_trial("liberals", nwords, True)
-    print_trial("republican", nwords, False)
-    print_trial("republican", nwords, True)
-    print_trial("republicans", nwords, False)
-    print_trial("republicans", nwords, True)
-
+    if args["start"] == "":
+        print_trial("obama", nwords, False)
+        print_trial("obama", nwords, True)
+        print_trial("liberal", nwords, False)
+        print_trial("liberal", nwords, True)
+        print_trial("liberals", nwords, False)
+        print_trial("liberals", nwords, True)
+        print_trial("republican", nwords, False)
+        print_trial("republican", nwords, True)
+        print_trial("republicans", nwords, False)
+        print_trial("republicans", nwords, True)
+    else:
+        start = args["start"]
+        print_trial(start, nwords, False)
+        print_trial(start, nwords, True)
