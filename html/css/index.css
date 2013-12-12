@@ -121,12 +121,12 @@ body, html {
   width: 100%;
   height: 100%;
   min-width: 1100px;
-  font-family: 'League Gothic';
+  font-family: "bebas-neue";
   margin: 0px;
   padding: 0px; }
 
 input, textarea, select {
-  font-family: 'League Gothic'; }
+  font-family: "bebas-neue"; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
@@ -159,7 +159,11 @@ select {
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     behavior: url("/lib/PIE-1.0.0/PIE.php");
-    border: 2px solid white; }
+    border: 2px solid white;
+    box-shadow: 0px 1px 3px #777777;
+    behavior: url("/lib/PIE-1.0.0/PIE.php");
+    -moz-box-shadow: 0px 1px 3px #777777;
+    -webkit-box-shadow: 0px 1px 3px #777777; }
 
 #sidebar {
   position: absolute;
@@ -169,13 +173,13 @@ select {
   width: 250px;
   background-color: #E48B4F;
   color: white;
-  font-family: 'League Gothic'; }
+  font-family: "bebas-neue"; }
 
 #sidebar h1 {
   font-weight: normal;
   text-align: center;
   margin-bottom: 5px;
-  letter-spacing: 2px; }
+  letter-spacing: 1px; }
 
 #navigation, #predictor-links {
   padding: 0px;
@@ -191,7 +195,8 @@ select {
 
 #sidebar .subtext {
   text-align: center;
-  margin-top: 0px; }
+  margin-top: 0px;
+  letter-spacing: 1px; }
 
 #site-content-wrapper {
   position: absolute;
@@ -210,31 +215,34 @@ select {
   border-top: 10px solid #E48B4F;
   position: relative; }
   #site-content .section {
-    font-size: 18px;
     margin: 0px auto 0px auto;
     text-align: justify;
     padding-bottom: 20px;
-    vertical-align: bottom; }
+    vertical-align: bottom;
+    font-family: 'raleway';
+    font-weight: 400;
+    font-size: 14px; }
     #site-content .section.paddingless {
       padding-bottom: 0px; }
     #site-content .section img {
       width: 800px; }
     #site-content .section p {
-      padding: 0px 20px;
-      font-size: 20px; }
+      margin: 0px 20px 20px 0px;
+      padding: 0px 20px 0px 20px; }
     #site-content .section p, #site-content .section ol {
       color: #555; }
     #site-content .section ol {
-      padding: 20px 150px 0px 120px; }
+      padding: 10px 80px 0px 50px; }
       #site-content .section ol li {
         margin-bottom: 15px; }
     #site-content .section h1 {
-      margin: 0px 0px 0px 0px;
+      margin: 0px 0px 20px 0px;
       font-size: 20px;
       color: #444;
       padding: 15px 20px 12px 20px;
       background-color: #EEE;
-      position: relative; }
+      position: relative;
+      font-family: "bebas-neue"; }
       #site-content .section h1.marginless {
         margin: 0px; }
       #site-content .section h1:before {
@@ -261,3 +269,8 @@ select {
         -webkit-border-radius: 25px;
         -moz-border-radius: 25px;
         behavior: url("/lib/PIE-1.0.0/PIE.php"); }
+    #site-content .section h2 {
+      font-family: "bebas-neue";
+      margin: 0px 0px 10px 0px;
+      padding: 0px 20px;
+      color: #666; }
