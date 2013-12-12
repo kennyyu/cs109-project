@@ -35,7 +35,25 @@
                 <p></p>
             </div>
             <div class="section">
-                <h1>DATA ANALYSIS</h1>
+                <h1>Predicting Upvotes</h1>
+                <h2>Overview</h2>
+                <p>
+                    We use the comments and upvotes data within a subreddit to build a predictor on how many votes a comment will receive on a given subreddit. We treat this problem as an example of supervised learning, where we want to perform a regression from feature vectors on text onto an upvote score. To do this, we separated the process into multiple parts.
+                    <ol>
+                        <li><b>Upvote Normalization.</b> In order to provide input to our supervised learning models, we normalized our upvotes to the interval <code>[0,1]</code></li>
+                        <li><b>Feature Selection.</b> We used different types of models to extract features from text in subreddit comments. These features include a Bag of Words model, N-gram model, and Latent Dirichlet Allocation to discover <i>topics</i> in text.</li>
+                        <li><b>Dimensionality Reduction.</b> Because the dimensionality of the feature space can be extremely huge (on the order of tens of thousands of features for a small data set), we needed to reduce the dimensionality of the feature space to make the training phase computationally tractable. To do this, we used multiple reduction models, including Kernel Principle Components Analysis and Selecting the K best features</li>
+                        <li><b>Learning.</b> We used several supervised learning techniques to build a regressor from our feature space <code>X</code> to our normalized upvotes <code>Y</code>. Our supervised learning methods include: Gaussian Naive Bayes, Support Vector Machines, K Nearest Neighbors, and Decision Trees</li>
+                        <li><b>Putting it all together.</b> We experimented with different combinations of feature selection, dimensionality reduction, and learning models, and we measured the error for each of these combinations through cross validation.</li>
+                    </ol>
+                </p>
+            </div>
+             <div class="section">
+                <h1>Clustering Comments in a Subreddit</h1>
+                <p></p>
+            </div>
+             <div class="section">
+                <h1>Sentence Prediction</h1>
                 <p></p>
             </div>
         </div>
