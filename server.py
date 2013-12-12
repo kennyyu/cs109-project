@@ -1,3 +1,31 @@
+"""
+CONFIG
+======
+Starts the server for upvote and sentence prediction. To run:
+
+    python server.py config.json
+
+Keys in config.json should exactly match the args to the
+
+    init_* functions defined below.
+
+SENTENCE PREDICTION
+===================
+To get a sentence prediction, send a GET request to /sentence?word=WORD.
+That will return the next word (NO NEW LINE).
+e.g.
+   COMMAND:  curl --request GET "localhost:18888/sentence?word=office"
+   RESPONSE: defeating
+
+UPVOTE PREDICTION
+=================
+To get an upvote prediction, send a GET request to /up?comment=COMMENT
+That will return the upvotes as a float. COMMENT must be query-formatted:
+e.g.
+   COMMAND:  curl --request GET "localhost:18888/up?comment=obama%02is%02awesome"
+   RESPONSE: 31.0
+"""
+
 import argparse
 import tornado.ioloop
 import tornado.web
@@ -150,4 +178,4 @@ if __name__ == "__main__":
     print ">>>>>"
     init_upvote(**config["upvote"])
     print ">>>>>"
-    init_server(config["port"])
+    init_server(**config["server"])

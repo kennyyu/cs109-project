@@ -13,5 +13,7 @@
     "learner": "nb",
     "dim": 1000
   },
-  "port": 18888
+  "server": {
+    "port": 18888
+  }
 }
