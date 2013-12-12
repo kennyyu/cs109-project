@@ -21,6 +21,9 @@ UP_LEARNER = None
 UP_DIM = 1000
 
 def init_sentence(subreddit, ngram, random):
+    """
+    Initializes the ngram model for sentence prediction
+    """
     global SENT_DATAFILE, SENT_NGRAM, SENT_RANDOM, SENT_NGRAM_FREQ
 
     SENT_DATAFILE = subreddit
@@ -64,6 +67,9 @@ def predict_upvotes(comment, df, model, reducer, learner):
     return upvotes[0]
 
 def init_upvote(subreddit, feature, ngram, lda, reducer, learner, dim):
+    """
+    initializes the models for predicting upvotes
+    """
     global UP_DF, UP_FEATURE, UP_REDUCER, UP_LEARNER, UP_DIM
 
     print "subreddit file:", subreddit
@@ -86,25 +92,31 @@ def init_upvote(subreddit, feature, ngram, lda, reducer, learner, dim):
     print "upvote init done"
 
 class SentenceHandler(tornado.web.RequestHandler):
+    """
+    Handler that takes a word and outputs the next word
+    """
     def get(self):
         word = self.get_argument("word", "")
         word = clean_comment(word)
-        print "SENTENCE REQUEST: %s" % word
         if word == "":
-            self.write("")
-            return
-        next = find_next_word(word, SENT_NGRAM_FREQ, random=SENT_RANDOM)
+            next = ""
+        else:
+            next = find_next_word(word, SENT_NGRAM_FREQ, random=SENT_RANDOM)
+        print "[X] SENTENCE REQUEST: %s, RESPONSE: %s" % (word, next)
         self.write(next)
 
 class UpHandler(tornado.web.RequestHandler):
+    """
+    Handler that takes a comment and outputs the upvote
+    """
     def get(self):
         comment = self.get_argument("comment", "")
         comment = clean_comment(comment)
-        print "UP REQUEST: %s" % comment
         if comment == "":
-            self.write(str(0))
-            return
-        upvote = predict_upvotes(comment, UP_DF, UP_FEATURE, UP_REDUCER, UP_LEARNER)
+            upvote = 0.0
+        else:
+            upvote = predict_upvotes(comment, UP_DF, UP_FEATURE, UP_REDUCER, UP_LEARNER)
+        print "[X] UP REQUEST: %s, UPVOTES: %s" % (comment, str(upvote))
         self.write(str(upvote))
 
 application = tornado.web.Application([
@@ -113,6 +125,9 @@ application = tornado.web.Application([
 ])
 
 def init_server(port):
+    """
+    initializes the server
+    """
     print "starting server..."
     application.listen(port)
     tornado.ioloop.IOLoop.instance().start()
@@ -130,6 +145,9 @@ if __name__ == "__main__":
     print "configuration:"
     print json.dumps(config, indent = 2)
 
+    print ">>>>>"
     init_sentence(**config["sentence"])
+    print ">>>>>"
     init_upvote(**config["upvote"])
+    print ">>>>>"
     init_server(config["port"])
