@@ -23,9 +23,9 @@ def cluster_within_subreddit(df, X, n_clusters):
 
     # remove stopwords
     s = set(stopwords.words('english'))
-    file = open('data/stopwords.txt', 'rb')
-    s |= set(file.readlines())
-    file.close()
+    #file = open('data/stopwords.txt', 'rb')
+    #s |= set(file.readlines())
+    #file.close()
 
     M_words_to_print = 30
     for cluster_num, word_freq in enumerate(frequent):
