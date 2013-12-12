@@ -151,7 +151,8 @@ def test_performance(df, model_name, learner_name, reducer_name, n_folds, dim):
 
 def clean_comment(s):
     s = s.lower()
-    s = s.translate(None, ',./?;:\'\"[]{}`~!@#$%^&*()=+_\\|')
+    for c in ',./?;:\'\"[]{}`~!@#$%^&*()=+_\\|':
+        s = s.replace(c, '')
     return s
 
 parser = argparse.ArgumentParser("Run Upvote predictor. run with python -i")
