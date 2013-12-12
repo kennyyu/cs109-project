@@ -69,6 +69,12 @@ select {
         @include border-radius(30px);
         border: 2px solid white;
         @include box-shadow(0px 1px 3px #777);
+        @include transition(.2s ease opacity);
+        cursor: pointer;
+
+        &:hover {
+            opacity: .7;
+        }
     }
 }
 
@@ -98,7 +104,8 @@ select {
         padding: 8px 15px;   
         letter-spacing: 1px;
         cursor: pointer;
-
+        @include transition(.3s ease background-color);
+            
         &:hover {
             background-color: #303030;
         }
@@ -147,7 +154,8 @@ select {
         }
 
         img {
-            width: 800px;
+            width: 780px;
+            margin: 0px 10px 10px 10px;
         }
 
         p {
@@ -206,8 +214,24 @@ select {
         h2 {
             font-family: "bebas-neue";
             margin: 0px 0px 10px 0px;
-            padding: 0px 20px;
-            color: #666;
+            padding: 0px 20px 0px 10px;
+            vertical-align: bottom;
+            background-color: orange;
+            color: white;
+            height: 30px;
+            display: inline-block;
+            line-height: 32px;
+            position: relative;
+
+            &:after {
+                position: absolute;
+                top: 0px;
+                left: -12px;
+                content: '';
+                width: 12px;
+                height: 42px;
+                background-image: url('/img/ribbon.png');
+            }
         }
     }
 }

@@ -163,7 +163,15 @@ select {
     box-shadow: 0px 1px 3px #777777;
     behavior: url("/lib/PIE-1.0.0/PIE.php");
     -moz-box-shadow: 0px 1px 3px #777777;
-    -webkit-box-shadow: 0px 1px 3px #777777; }
+    -webkit-box-shadow: 0px 1px 3px #777777;
+    -webkit-transition: 0.2s ease opacity;
+    -moz-transition: 0.2s ease opacity;
+    -ms-transition: 0.2s ease opacity;
+    -o-transition: 0.2s ease opacity;
+    transition: 0.2s ease opacity;
+    cursor: pointer; }
+    #photos img:hover {
+      opacity: .7; }
 
 #sidebar {
   position: absolute;
@@ -187,7 +195,12 @@ select {
   #navigation li, #predictor-links li {
     padding: 8px 15px;
     letter-spacing: 1px;
-    cursor: pointer; }
+    cursor: pointer;
+    -webkit-transition: 0.3s ease background-color;
+    -moz-transition: 0.3s ease background-color;
+    -ms-transition: 0.3s ease background-color;
+    -o-transition: 0.3s ease background-color;
+    transition: 0.3s ease background-color; }
     #navigation li:hover, #predictor-links li:hover {
       background-color: #303030; }
     #navigation li.selected, #predictor-links li.selected {
@@ -225,7 +238,8 @@ select {
     #site-content .section.paddingless {
       padding-bottom: 0px; }
     #site-content .section img {
-      width: 800px; }
+      width: 780px;
+      margin: 0px 10px 10px 10px; }
     #site-content .section p {
       margin: 0px 20px 20px 0px;
       padding: 0px 20px 0px 20px; }
@@ -272,5 +286,19 @@ select {
     #site-content .section h2 {
       font-family: "bebas-neue";
       margin: 0px 0px 10px 0px;
-      padding: 0px 20px;
-      color: #666; }
+      padding: 0px 20px 0px 10px;
+      vertical-align: bottom;
+      background-color: orange;
+      color: white;
+      height: 30px;
+      display: inline-block;
+      line-height: 32px;
+      position: relative; }
+      #site-content .section h2:after {
+        position: absolute;
+        top: 0px;
+        left: -12px;
+        content: '';
+        width: 12px;
+        height: 42px;
+        background-image: url("/img/ribbon.png"); }

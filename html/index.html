@@ -13,8 +13,8 @@
         <p class="subtext">A LOOK INTO THE WORLD OF REDDIT</p>
         <div id="photos">
             <img src="/img/joseph.png"/>
-            <img src="/img/rj.png"/>
-            <img src="/img/kenny.png"/>
+            <a href="http://rjaquino.net"><img src="/img/rj.png"/></a>
+            <a href="http://kennyyu.me"><img src="/img/kenny.png"/></a>
             <img src="/img/ali.png"/>
         </div>
         <ul id="navigation">
@@ -43,6 +43,9 @@
             </div>
             <div class="section">
                 <h1>PROBLEM AND DATASET</h1>
+                <h2>OVERVIEW</h2>
+                <p></p>
+                <h2>SCRAPING</h2>
                 <p></p>
             </div>
             <div class="section">
@@ -52,47 +55,45 @@
             <div class="section">
                 <h1>PREDICTING UPVOTES</h1>
                 <h2>Overview</h2>
+                <img src="img/upvotes_process.png"></img>
                 <p>
-                    <img src="img/upvotes_process.png"></img><br>
                     We use the comments and upvotes data within a subreddit to build a predictor on how many votes a comment will receive on a given subreddit. We treat this problem as an example of supervised learning, where we want to perform a regression from feature vectors on text onto an upvote score. To do this, we separated the process into multiple parts.
-                    <ol>
-                        <li>
-                            <b>Upvote Normalization.</b> In order to provide input to our supervised learning models, we normalized our upvotes to the interval <code>[0,1]</code></li>
-                        <li>
-                            <b>Feature Selection.</b> We used different types of models to extract features from text in subreddit comments. These features include:
-                            <ul>
-                                <li>Bag of Words</li>
-                                <li>N-gram model</li>
-                                <li>Latent Dirichlet Allocation to discover <i>topics</i> in text.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <b>Dimensionality Reduction.</b> Because the dimensionality of the feature space can be extremely huge (on the order of tens of thousands of features for a small data set), we needed to reduce the dimensionality of the feature space to make the training phase computationally tractable. To do this, we used multiple reduction models, including:
-                            <ul>
-                                <li>Kernel Principle Components Analysis</li>
-                                <li>Selecting the K best features</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <b>Learning.</b> We used several supervised learning techniques to build a regressor from our feature space <code>X</code> to our normalized upvotes <code>Y</code>. Our supervised learning methods include:
-                            <ul>
-                                <li>Gaussian Naive Bayes</li>
-                                <li>Support Vector Machines</li>
-                                <li>K Nearest Neighbors</li>
-                                <li>Decision Trees</li>
-                            </ul>
-                        </li>
-                        <li><b>Putting it all together.</b> We experimented with different combinations of feature selection, dimensionality reduction, and learning models, and we measured the error for each of these combinations through cross validation.</li>
-                    </ol>
                 </p>
+                <ol>
+                    <li>
+                        <b>Upvote Normalization.</b> In order to provide input to our supervised learning models, we normalized our upvotes to the interval <code>[0,1]</code></li>
+                    <li>
+                        <b>Feature Selection.</b> We used different types of models to extract features from text in subreddit comments. These features include:
+                        <ul>
+                            <li>Bag of Words</li>
+                            <li>N-gram model</li>
+                            <li>Latent Dirichlet Allocation to discover <i>topics</i> in text.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Dimensionality Reduction.</b> Because the dimensionality of the feature space can be extremely huge (on the order of tens of thousands of features for a small data set), we needed to reduce the dimensionality of the feature space to make the training phase computationally tractable. To do this, we used multiple reduction models, including:
+                        <ul>
+                            <li>Kernel Principle Components Analysis</li>
+                            <li>Selecting the K best features</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Learning.</b> We used several supervised learning techniques to build a regressor from our feature space <code>X</code> to our normalized upvotes <code>Y</code>. Our supervised learning methods include:
+                        <ul>
+                            <li>Gaussian Naive Bayes</li>
+                            <li>Support Vector Machines</li>
+                            <li>K Nearest Neighbors</li>
+                            <li>Decision Trees</li>
+                        </ul>
+                    </li>
+                    <li><b>Putting it all together.</b> We experimented with different combinations of feature selection, dimensionality reduction, and learning models, and we measured the error for each of these combinations through cross validation.</li>
+                </ol>
                 <h2>Results</h2>
-                <p>
-                    <img src="img/ngram_error.png"></img><br>  
-                    <img src="img/lda_error.png"></img><br>
-                    <img src="img/dim_error.png"></img><br>
-                    <img src="img/reducer_error.png"></img><br>
-                    <img src="img/learner_error.png"></img><br>
-                </p>
+                <img src="img/ngram_error.png"></img><br>  
+                <img src="img/lda_error.png"></img><br>
+                <img src="img/dim_error.png"></img><br>
+                <img src="img/reducer_error.png"></img><br>
+                <img src="img/learner_error.png"></img><br>
             </div>
              <div class="section">
                 <h1>CLUSTERING COMMENTS IN A SUBREDDIT</h1>
