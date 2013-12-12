@@ -55,6 +55,22 @@ select {
     border: none;
 }
 
+#photos {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    img {
+        vertical-align: bottom;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin: 5px 3px;
+        @include border-radius(30px);
+        border: 2px solid white;
+    }
+}
+
 #sidebar {
     position: absolute;
     left: 0px;
@@ -73,7 +89,7 @@ select {
     letter-spacing: 2px;
 }
 
-#navigation {
+#navigation, #predictor-links {
     padding: 0px;
     margin: 30px 0px;
 

@@ -145,6 +145,22 @@ select {
   -webkit-appearance: none;
   border: none; }
 
+#photos {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px; }
+  #photos img {
+    vertical-align: bottom;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px 3px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    behavior: url("/lib/PIE-1.0.0/PIE.php");
+    border: 2px solid white; }
+
 #sidebar {
   position: absolute;
   left: 0px;
@@ -161,16 +177,16 @@ select {
   margin-bottom: 5px;
   letter-spacing: 2px; }
 
-#navigation {
+#navigation, #predictor-links {
   padding: 0px;
   margin: 30px 0px; }
-  #navigation li {
+  #navigation li, #predictor-links li {
     padding: 8px 15px;
     letter-spacing: 1px;
     cursor: pointer; }
-    #navigation li:hover {
+    #navigation li:hover, #predictor-links li:hover {
       background-color: #303030; }
-    #navigation li.selected {
+    #navigation li.selected, #predictor-links li.selected {
       background-color: #303030; }
 
 #sidebar .subtext {
