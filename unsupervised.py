@@ -27,7 +27,7 @@ def cluster_within_subreddit(df, X, n_clusters):
     s |= set(file.readlines())
     file.close()
 
-    M_words_to_print = 50
+    M_words_to_print = 30
     for cluster_num, word_freq in enumerate(frequent):
         print ">>> CLUSTER:", cluster_num, "num items:", len(clusters[cluster_num])
         words = filter(lambda (k,v): not k in s, word_freq.items())
