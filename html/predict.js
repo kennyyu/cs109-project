@@ -37,4 +37,9 @@ $(document).ready(function(){
 		});
 	});
 
+	$("#clear-button").click(function(){
+		$("#word").val("");
+		$("#sentence").html("");
+	});
+
 });
