@@ -5,6 +5,7 @@ from gensim.models import ldamodel
 from scipy.sparse import vstack
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from utils import *
+from nltk.corpus import stopwords
 
 topscores = {'Liberal': 106, 'videos': 10341, 'gentlemanboners': 1619, 'books':
         4914, 'Music': 7286, 'politics': 15133, 'nba': 4108, 'pokemon': 3270,
@@ -132,13 +133,13 @@ class LdaFeatureModel(AbstractFeatureModel):
         self.lda = None
         self.num_topics = num_topics
         self.printing = printing
-
+        self.stop = set(stopwords.words('english'))
 
     def make_training_xy(self, data):
         # convert data to "docs" for lda
         docs = []
         for post in data.body:
-            docs.append(post.split(" "))
+            docs.append(filter(lambda w: w not in self.stop, post.split(" ")))
 
         # make LDA model
         self.dictionary = corpora.Dictionary(docs)
@@ -161,7 +162,7 @@ class LdaFeatureModel(AbstractFeatureModel):
         # convert data to "docs" for lda
         docs = []
         for post in new_data.body:
-            docs.append(post.split(" "))
+            docs.append(filter(lambda w: w not in self.stop, post.split(" ")))
 
         # make X
         X = self.docs_to_lda_matrix(docs)

@@ -22,7 +22,12 @@ FEATURES = {
     "4gram" : lambda: features.NGramModel(4),
     "5gram" : lambda: features.NGramModel(5),
     "6gram" : lambda: features.NGramModel(6),
-    "lda" : features.LdaFeatureModel,
+    "10lda" : lambda: features.LdaFeatureModel(num_topics=10),
+    "20lda" : lambda: features.LdaFeatureModel(num_topics=20),
+    "30lda" : lambda: features.LdaFeatureModel(num_topics=30),
+    "40lda" : lambda: features.LdaFeatureModel(num_topics=40),
+    "50lda" : lambda: features.LdaFeatureModel(num_topics=50),
+    "60lda" : lambda: features.LdaFeatureModel(num_topics=60),
 }
 
 """
@@ -32,6 +37,7 @@ REDUCERS = {
     "select" : reduction.SelectKBestReduction,
     "pca-linear" : lambda dim : reduction.KernelPCAReduction(dim, kernel='linear'),
     "pca-rbf" : lambda dim : reduction.KernelPCAReduction(dim, kernel='rbf'),
+    "pca-sigmoid" : lambda dim : reduction.KernelPCAReduction(dim, kernel='sigmoid'),
     "none" : lambda dim : reduction.NoopReduction(),
 }
 
@@ -42,6 +48,8 @@ LEARNERS = {
     "nb" : learners.GaussianNBLearner,
     "svm-linear" : lambda: learners.SVMLearner(kernel='linear'),
     "svm-rbf" : lambda: learners.SVMLearner(kernel='rbf'),
+    "svm-sigmoid" : lambda: learners.SVMLearner(kernel='sigmoid'),
+    "knn" : lambda: learners.KNeighborsLearner(),
 }
 
 """
@@ -85,6 +93,10 @@ def load_subreddit(filename, fields=FIELDS):
     return df
 
 def compute_score(learner, X, Y):
+    """
+    get predictions for X, and compute the sum of the absolute
+    differences between our predictions and true values
+    """
     return np.mean(np.abs(learner.predict(X) - np.array(Y)))
 
 def test_performance(df, model_name, learner_name, reducer_name, n_folds, dim):
