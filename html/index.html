@@ -23,8 +23,8 @@
             <li class="selected">PROBLEM AND DATASET</li>
             <li>DATA ANALYSIS</li>
             <li>PREDICTING UPVOTES</li>
-            <li>CLUSTERING COMMENTS IN A SUBREDDIT</li>            
             <li>SENTENCE PREDICTION</li>             
+            <li>CLUSTERING COMMENTS WITHIN SUBREDDIT</li>
         </ul>
         <ul id="predictor-links">
             <li>SENTENCE PREDICTOR</li>  
@@ -105,11 +105,28 @@
                 <p><b>Error by Learning Model.</b> This plot shows how the error changes as we change our learner. We tested these learners: naive bayes, SVM using a linear kernel, SVM using a radial basis function kernel, SVM using a polynomial kernel (degree 3), K nearest neighbors, and decision trees. We test all of these against (6 gram, select best 100 features) and (LDA with 1000 topics, no reducer).</p>
             </div>
              <div class="section">
-                <h1>CLUSTERING COMMENTS IN A SUBREDDIT</h1>
-                <p></p>
+                <h1>SENTENCE PREDICTION</h1>
+                <p>
+                    Using N-grams, we can build a predictor for the next word in a sentence, given the current word. To do this, we compute the sum <code>x'</code> of all feature vectors <code>x</code>. The <code>j</code>th component of this vector represents how important ngram <code>j</code> is in the subreddit. Sort these ngrams based on their scores in decreasing order.
+                </p>
+                <p>
+                    Now given a word <code>w</code>, we find all ngrams starting with word <code>w</code>, pick the ngram with the highest score of these ngrams, and return the next word in that ngram. To add some nondeterminism to this, we can pick the next word after word <code>w</code> using a multinomial distribution, where the probability vector for the next word is given by the normalized scores of the ngrams whose first word is <code>w</code>. As an example of sentences built with this predictor, see below (we used 6-grams on the <code>/r/Liberal</code> subreddit, max sentence length 20):
+                </p>
+                <p>
+                    <ul>
+                        <li>liberal atheist hang casey</li>
+                        <li>liberal conservative taliban fundamentalist theocratic rule important understand tyranny possibly talking points rest coming people grow number people outraged walmart order</li>
+                        <li>liberals retarded babies adults believe argue claimed zimmerman facial</li>
+                        <li>liberals dislike paul thought obama mccain policies corrupt self employed corporate america bashers fact government rights way local level massive government</li>
+                        <li>republican behavior pattern fits cult disfavor indebting public infrastructure taxes defined supreme court finances</li>
+                        <li>republican bubble separate legislation constitution supported slavery fought slavery officiate eternally valid saying obama favorite rushisms http www huffingtonpost com 42</li>
+                        <li>republicans funny pullman kind hoping succeeded agreement rest fox long time cat broke law convince idiots like example provide documented proof
+                        <li>republicans funny used snap better served npr podcasts mainly applied small checks registration card check lanes example forcible assault rifle straight<li>
+                    </ul>
+                </p>
             </div>
              <div class="section">
-                <h1>SENTENCE PREDICTION</h1>
+                <h1>CLUSTERING COMMENTS WITHIN SUBREDDIT</h1>
                 <p></p>
             </div>
         </div>
