@@ -129,7 +129,7 @@ class LdaFeatureModel(AbstractFeatureModel):
     """
     LDA Topic model
     """
-    def __init__(self, num_topics=10, printing=True):
+    def __init__(self, num_topics=10, printing=False):
         self.lda = None
         self.num_topics = num_topics
         self.printing = printing
