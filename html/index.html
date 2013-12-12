@@ -89,11 +89,20 @@
                     <li><b>Putting it all together.</b> We experimented with different combinations of feature selection, dimensionality reduction, and learning models, and we measured the error for each of these combinations through cross validation.</li>
                 </ol>
                 <h2>Results</h2>
-                <img src="img/ngram_error.png"></img><br>  
-                <img src="img/lda_error.png"></img><br>
-                <img src="img/dim_error.png"></img><br>
-                <img src="img/reducer_error.png"></img><br>
-                <img src="img/learner_error.png"></img><br>
+                <p>
+                    Below are our cross validation training and test
+                    errors for various combinations of (feature model, reducer model, learning model). We defined the <b>error</b> of a feature vector <code>x</code> with predicted normalized upvotes <code>y'</code> and true normalized upvotes <code>y</code> as <code>|y' - y|</code>. The error of a data set is the sum of all the errors of individual feature vectors <code>x</code>. Overall, we conclude that the biggest impact on the error of our data set was the feature model we chose--given the model, the target dimension size, the reduction model, and learning model had less impacts on the error.
+                </p>
+                <img src="img/ngram_error.png"></img> 
+                <p><b>Ngram error.</b> This plot shows how the error changes as we increase N for our Ngram model. We hold the reducer (select 5000 best features) and learner (naive bayes) constant.</p>
+                <img src="img/lda_error.png"></img>
+                <p><b>LDA error.</b> This plot shows how the error changes as we increase the number of topics discovered by our Latent Dirichlet Model. For these experiments, we did not use a reducer, and we used naive bayes as our learner.</p>
+                <img src="img/dim_error.png"></img>
+                <p><b>Reduced dimensionality error.</b> This plot shows how the error changes as increase the reduced dimensionality size. Here, we use 6-grams, naive bayes, and we use select k best as our reducer model.</p>
+                <img src="img/reducer_error.png"></img>
+                <p><b>Error by Reduction Model.</b> This plot shows how the error changes as we change our reducer model. We use 6grams with 1000 as our reduced dimension size, and we use naive bayes. We used select k best, PCA using a linear kernel, and PCA using the cosine kernel.</p>
+                <img src="img/learner_error.png"></img>
+                <p><b>Error by Learning Model.</b> This plot shows how the error changes as we change our learner. We tested these learners: naive bayes, SVM using a linear kernel, SVM using a radial basis function kernel, SVM using a polynomial kernel (degree 3), K nearest neighbors, and decision trees. We test all of these against (6 gram, select best 100 features) and (LDA with 1000 topics, no reducer).</p>
             </div>
              <div class="section">
                 <h1>CLUSTERING COMMENTS IN A SUBREDDIT</h1>
