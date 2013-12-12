@@ -40,8 +40,7 @@ reducer names -> functions that take reduced dim as an arg
 REDUCERS = {
     "select" : reduction.SelectKBestReduction,
     "pca-linear" : lambda dim : reduction.KernelPCAReduction(dim, kernel='linear'),
-    "pca-rbf" : lambda dim : reduction.KernelPCAReduction(dim, kernel='rbf'),
-    "pca-sigmoid" : lambda dim : reduction.KernelPCAReduction(dim, kernel='sigmoid'),
+    "pca-cosine" : lambda dim : reduction.KernelPCAReduction(dim, kernel='cosine'),
     "none" : lambda dim : reduction.NoopReduction(),
 }
 
@@ -52,8 +51,9 @@ LEARNERS = {
     "nb" : learners.GaussianNBLearner,
     "svm-linear" : lambda: learners.SVMLearner(kernel='linear'),
     "svm-rbf" : lambda: learners.SVMLearner(kernel='rbf'),
-    "svm-sigmoid" : lambda: learners.SVMLearner(kernel='sigmoid'),
+    "svm-poly" : lambda: learners.SVMLearner(kernel='poly'),
     "knn" : lambda: learners.KNeighborsLearner(),
+    "tree" : lambda: learners.DecisionTreeLearner(),
 }
 
 """
