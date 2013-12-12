@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.svm import SVR
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.tree import DecisionTreeRegressor
 import numpy as np
 
 class AbstractLearner(object):
@@ -72,7 +74,7 @@ class GaussianNBLearner(AbstractLearner):
 
     def score(self, X, Y):
         return np.mean(np.abs(self.nb.predict(X) - np.array(Y)))
-    
+
 class SVMLearner(AbstractLearner):
     """
     Support Vector Machine Learner for regression (continuous
@@ -89,6 +91,20 @@ class SVMLearner(AbstractLearner):
 
     def predict(self, X):
         return self.svr.predict(X)
+
+class KNeighborsLearner(AbstractLearner):
+    """
+    Learner using k-nearest neighbors
+    """
+
+    def __init__(self, **kwargs):
+        self.knn = KNeighborsRegressor(**kwargs)
+
+    def train(self, X, Y):
+        self.knn.fit(X, Y)
+
+    def predict(self, X):
+        return self.knn.predict(X)
 
 class MultiNBLearner(AbstractLearner):
     """
@@ -111,3 +127,26 @@ class MultiNBLearner(AbstractLearner):
 
     def predict(self, X):
         return self.nb.predict(X)
+
+class DecisionTreeLearner(AbstractLearner):
+    """
+    Decision Tree Regressor
+
+    http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html
+    """
+
+    def __init__(self, **kwargs):
+        self.tree = DecisionTreeRegressor(**kwargs)
+
+    def train(self, X, Y):
+        if hasattr(X, 'toarray'):
+            self.tree.fit(X.toarray(), Y)
+        else:
+            self.tree.fit(X, Y)
+
+    def predict(self, X):
+        if (hasattr(X, "toarray")):
+            return self.tree.predict(X.toarray())
+        else:
+            return self.tree.predict(X)
+

@@ -57,6 +57,17 @@ class AbstractReduction(object):
         """
         pass
 
+class NoopReduction(AbstractReduction):
+    """
+    does nothing
+    """
+    def n_components(self):
+        pass
+    def fit(self, X, Y=None):
+        pass
+    def transform(self, X):
+        return X
+
 class KernelPCAReduction(AbstractReduction):
     """
     Use kernel PCA to reduce dimensionality
@@ -98,7 +109,7 @@ class SelectKBestReduction(AbstractReduction):
 
     def transform(self, X):
         return self.select.transform(X)
-    
+
 class RandomizedPCAReduction(AbstractReduction):
     """
     Use Randomized PCA to reduce dimensionality
@@ -111,7 +122,7 @@ class RandomizedPCAReduction(AbstractReduction):
 
     def n_components(self):
         return self.n_components
-    
+
     def fit(self, X):
         self.pca.fit(X)
 
@@ -133,7 +144,7 @@ class TruncatedSVDReduction(AbstractReduction):
     def n_components(self):
         return self.n_components
 
-    def fit(self, X):
+    def fit(self, X, Y=None):
         self.pca.fit(X)
 
     def transform(self, X):
