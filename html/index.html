@@ -50,7 +50,43 @@
             </div>
             <div class="section">
                 <h1>DATA ANALYSIS</h1>
-                <p></p>
+                <p>In order to explore the data we had collected, we decided to compute different metrics of the comments.
+                
+                To begin, we computed the following metrics for all rows in our dataframes:
+                
+                <ol>
+                    <li>Number of words in a comment</li>
+                    <li>Length of comment (in characters)</li>
+                    <li>Average word length in a comment (in characters)</li>
+                    <li>Number of letters in a comment</li>
+                    <li>Number of swear words in a comment</li>
+                </ol>
+                Our next task was to determine whether any of these metric correlated with upvotes. Below are a few graphs displaying these metrics on all comments in a particular subreddit.
+                </p>
+                <img src="img/aww_swear.png"></img>
+                <img src="img/funny_word_length.png"></img>
+
+                <p>
+                We determined that these metrics would not be terribly useful as features, as they span the possible Y values.
+                </p>
+
+                <p>
+                The next features we looked at related to the posts that the comments were on. We wondered whether comments on posts with many comments had more upvotes than comments on posts without many comments. Below is a graph over the entire dataset, comparing comments per post vs net upvotes.
+                </p>
+                <img src="img/combined_comments_per_post.png"></img>
+                <p>
+                Again, while there is an upward trend for the max at any X, the values still span the Y values, and is therefore not a terribly useful feature. Next we took a look at vote decay with time - how well do comments that are posted early perform compared to those that are posted late? Below we show the number of comments by time and the average net vote count as a function of time, grouping comments by the half-hour.
+                </p>
+                <img src="img/number_of_comments_by_time.png"></img>
+                <img src="img/vote_decay.png"></img>
+                <p>
+                We found that comments posted in the first half-hour performed best, with scores quickly decaying after that.
+                </p>
+                <p>
+                Finally, we explored word frequency counts and their impact on upvotes. Below we show a graph of the top 20 animal words in /r/aww, and the average upvotes comments containing those words receive.
+                </p>
+                <img alt="animal image here"></img>
+                
             </div>
             <div class="section">
                 <h1>PREDICTING UPVOTES</h1>
