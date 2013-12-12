@@ -26,12 +26,12 @@ FEATURES = {
     "8gram" : lambda: features.NGramModel(8),
     "9gram" : lambda: features.NGramModel(9),
     "10gram" : lambda: features.NGramModel(10),
-    "10lda" : lambda: features.LdaFeatureModel(num_topics=10),
-    "20lda" : lambda: features.LdaFeatureModel(num_topics=20),
-    "30lda" : lambda: features.LdaFeatureModel(num_topics=30),
-    "40lda" : lambda: features.LdaFeatureModel(num_topics=40),
-    "50lda" : lambda: features.LdaFeatureModel(num_topics=50),
-    "60lda" : lambda: features.LdaFeatureModel(num_topics=60),
+    "100lda" : lambda: features.LdaFeatureModel(num_topics=100),
+    "200lda" : lambda: features.LdaFeatureModel(num_topics=200),
+    "500lda" : lambda: features.LdaFeatureModel(num_topics=500),
+    "1000lda" : lambda: features.LdaFeatureModel(num_topics=1000),
+    "1500lda" : lambda: features.LdaFeatureModel(num_topics=1500),
+    "2000lda" : lambda: features.LdaFeatureModel(num_topics=2000),
 }
 
 """
@@ -148,6 +148,11 @@ def test_performance(df, model_name, learner_name, reducer_name, n_folds, dim):
     print "--------------"
     print "MEAN TEST  ERROR:", str(model.y_to_label(df, [np.mean(test_errors)]))
     print "MEAN TRAIN ERROR:", str(model.y_to_label(df, [np.mean(train_errors)]))
+
+def clean_comment(s):
+    s = s.lower()
+    s = s.translate(None, ',./?;:\'\"[]{}`~!@#$%^&*()=+_\\|')
+    return s
 
 parser = argparse.ArgumentParser("Run Upvote predictor. run with python -i")
 parser.add_argument("subreddit", help="path to subreddit file", type=str)
