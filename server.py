@@ -123,6 +123,10 @@ class SentenceHandler(tornado.web.RequestHandler):
     """
     Handler that takes a word and outputs the next word
     """
+    def set_default_headers(self):
+        #TODO change this to your own domain
+        self.set_header("Access-Control-Allow-Origin", "http://localhost:8000")
+
     def get(self):
         word = self.get_argument("word", "")
         word = clean_comment(word)
@@ -137,6 +141,10 @@ class UpHandler(tornado.web.RequestHandler):
     """
     Handler that takes a comment and outputs the upvote
     """
+    def set_default_headers(self):
+        #TODO change this to your own domain
+        self.set_header("Access-Control-Allow-Origin", "http://localhost:8000")
+
     def get(self):
         comment = self.get_argument("comment", "")
         comment = clean_comment(comment)
