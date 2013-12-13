@@ -131,15 +131,19 @@ input, textarea, select {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
 
-li {
-  list-style: none; }
-
 tr {
   text-align: left; }
 
 a {
   text-decoration: none;
-  color: inherit; }
+  color: #E48B4F;
+  -webkit-transition: 0.3s opacity ease;
+  -moz-transition: 0.3s opacity ease;
+  -ms-transition: 0.3s opacity ease;
+  -o-transition: 0.3s opacity ease;
+  transition: 0.3s opacity ease; }
+  a:hover {
+    opacity: .8; }
 
 select {
   -webkit-appearance: none;
@@ -242,13 +246,24 @@ select {
       margin: 0px 10px 10px 10px; }
     #site-content .section p {
       margin: 0px 20px 20px 0px;
-      padding: 0px 20px 0px 20px; }
+      padding: 0px 20px 0px 20px;
+      line-height: 1.5em; }
+      #site-content .section p.caption {
+        text-align: center;
+        font-style: italic; }
+      #site-content .section p.quote {
+        border-left: 5px solid #EEE;
+        margin-left: 20px;
+        padding-left: 10px; }
     #site-content .section p, #site-content .section ol {
       color: #555; }
     #site-content .section ol {
-      padding: 10px 80px 0px 50px; }
+      margin: 0px 20px 20px 0px;
+      padding: 0px 80px 0px 50px; }
       #site-content .section ol li {
         margin-bottom: 15px; }
+    #site-content .section ul {
+      margin: 20px 20px 20px 0px; }
     #site-content .section h1 {
       margin: 0px 0px 20px 0px;
       font-size: 20px;
@@ -285,7 +300,7 @@ select {
         behavior: url("/lib/PIE-1.0.0/PIE.php"); }
     #site-content .section h2 {
       font-family: "bebas-neue";
-      margin: 0px 0px 10px 0px;
+      margin: 0px 0px 20px 0px;
       padding: 0px 20px 0px 10px;
       vertical-align: bottom;
       background-color: orange;

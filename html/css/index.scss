@@ -37,17 +37,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-li {
-    list-style: none;
-}
-
 tr {
     text-align: left;
 }
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: #E48B4F;
+    @include transition(.3s opacity ease);
+        
+    &:hover {
+        opacity: .8;
+    }
 }
 
 select {
@@ -161,6 +162,18 @@ select {
         p {
             margin: 0px 20px 20px 0px;
             padding: 0px 20px 0px 20px;
+            line-height: 1.5em;
+        
+            &.caption {
+                text-align: center;
+                font-style: italic;
+            }
+
+            &.quote {
+                border-left: 5px solid #EEE;
+                margin-left: 20px;
+                padding-left: 10px;
+            }
         }
 
         p, ol {
@@ -168,11 +181,16 @@ select {
         }
 
         ol {
-            padding: 10px 80px 0px 50px;
+            margin: 0px 20px 20px 0px;
+            padding: 0px 80px 0px 50px;
 
             li {
                 margin-bottom: 15px;
             }
+        }
+
+        ul {
+            margin: 20px 20px 20px 0px;
         }
 
         h1 {
@@ -213,7 +231,7 @@ select {
         
         h2 {
             font-family: "bebas-neue";
-            margin: 0px 0px 10px 0px;
+            margin: 0px 0px 20px 0px;
             padding: 0px 20px 0px 10px;
             vertical-align: bottom;
             background-color: orange;
