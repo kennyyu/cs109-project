@@ -125,7 +125,7 @@ class SentenceHandler(tornado.web.RequestHandler):
     """
     def set_default_headers(self):
         #TODO change this to your own domain
-        self.set_header("Access-Control-Allow-Origin", "http://localhost:8000")
+        self.set_header("Access-Control-Allow-Origin", "http://cs109.joeong.com")
 
     def get(self):
         word = self.get_argument("word", "")
@@ -143,7 +143,7 @@ class UpHandler(tornado.web.RequestHandler):
     """
     def set_default_headers(self):
         #TODO change this to your own domain
-        self.set_header("Access-Control-Allow-Origin", "http://localhost:8000")
+        self.set_header("Access-Control-Allow-Origin", "http://cs109.joeong.com")
 
     def get(self):
         comment = self.get_argument("comment", "")

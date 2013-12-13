@@ -87,7 +87,8 @@ def load_subreddit(filename, fields=FIELDS):
     in the json object.
     """
     file = open(filename, "rb")
-    arrays = {field:[] for field in fields}
+    arrays = dict((field, []) for field in fields)
+    #arrays = {field:[] for field in fields}
     for line in file.readlines():
         data = json.loads(line)
         for field in fields:

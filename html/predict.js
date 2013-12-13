@@ -1,5 +1,5 @@
-var UPVOTE_ENDPOINT = "http://localhost:18888/up";
-var SENTENCE_ENDPOINT = "http://localhost:18888/sentence";
+var UPVOTE_ENDPOINT = "http://cs109.joeong.com:18888/up";
+var SENTENCE_ENDPOINT = "http://cs109.joeong.com:18888/sentence";
 
 $(document).ready(function(){
 
