@@ -12,17 +12,14 @@ $(document).ready(function(){
 				"comment": comment
 			},
 			success: function(data, status, xhr) {
-				$("#comment-result").html(data);
+				$("#comment-result").html(parseInt(data));
 			},
 		});
 	});
 
 	$("#sentence-button").click(function(){
-		var word = $("#word").val();
-		var old = $("#sentence").html();
-		if (old == "") {
-			$("#sentence").html(word);
-		}
+		var old = $("#word").val();
+		var word = old.split(' ').pop();
 		$.ajax({
 			url: SENTENCE_ENDPOINT,
 			type: "GET",
@@ -30,16 +27,16 @@ $(document).ready(function(){
 				"word": word
 			},
 			success: function(data, status, xhr) {
-				$("#word").val(data);
-				var old = $("#sentence").html();
-				$("#sentence").html(old + " " + data);
+                if (old != '' && data == '' && old[old.length - 1] != '.')
+                    $("#word").val(old + '.');
+                else
+                    $("#word").val($.trim(old + ' ' + data));
 			},
 		});
 	});
 
 	$("#clear-button").click(function(){
 		$("#word").val("");
-		$("#sentence").html("");
 	});
 
 });

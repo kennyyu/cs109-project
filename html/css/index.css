@@ -325,3 +325,130 @@ select {
         width: 12px;
         height: 42px;
         background-image: url("/img/ribbon.png"); }
+
+#sentence-predictor {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none; }
+  #sentence-predictor ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #FFC883; }
+  #sentence-predictor :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #FFC883; }
+  #sentence-predictor ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #FFC883; }
+  #sentence-predictor :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #FFC883; }
+  #sentence-predictor h1 {
+    margin-bottom: 0px !important; }
+  #sentence-predictor textarea, #sentence-predictor div {
+    vertical-align: bottom; }
+  #sentence-predictor textarea {
+    border: 0px;
+    width: 760px;
+    background-color: #E48B4F;
+    resize: none;
+    margin: 0px;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    height: 200px;
+    outline: none;
+    display: inline-block; }
+  #sentence-predictor #sentence-button, #sentence-predictor #clear-button {
+    display: inline-block;
+    background-color: #444;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'bebas-neue';
+    font-size: 30px;
+    line-height: 50px; }
+    #sentence-predictor #sentence-button:hover, #sentence-predictor #clear-button:hover {
+      opacity: .9; }
+  #sentence-predictor #sentence-button {
+    width: 400px; }
+  #sentence-predictor #clear-button {
+    width: 399px;
+    border-left: 1px solid #E48B4F; }
+
+#upvote-predictor ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #FFC883; }
+#upvote-predictor :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #FFC883; }
+#upvote-predictor ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #FFC883; }
+#upvote-predictor :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #FFC883; }
+#upvote-predictor h1 {
+  margin-bottom: 0px !important; }
+#upvote-predictor textarea, #upvote-predictor div {
+  vertical-align: bottom; }
+#upvote-predictor textarea {
+  border: 0px;
+  width: 600px;
+  background-color: #E48B4F;
+  resize: none;
+  margin: 0px;
+  padding: 20px;
+  font-size: 30px;
+  color: white;
+  height: 200px;
+  outline: none;
+  display: inline-block; }
+#upvote-predictor #upvote-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  height: 240px; }
+#upvote-predictor #comment-result {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  height: 80px;
+  line-height: 80px;
+  font-family: 'bebas-neue';
+  font-size: 30px;
+  color: #555;
+  text-align: center; }
+#upvote-predictor img.alien {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 100px; }
+#upvote-predictor #upvote-subreddit {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 55px;
+  font-family: 'bebas-neue';
+  font-size: 20px;
+  color: #555;
+  text-align: center; }
+#upvote-predictor #upvote-button {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'bebas-neue';
+  font-size: 30px;
+  line-height: 50px; }
+  #upvote-predictor #upvote-button:hover {
+    opacity: .8; }
