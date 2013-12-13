@@ -92,7 +92,7 @@ class BagOfWordsModel(AbstractFeatureModel):
         if self.tfidf:
             X = TfidfTransformer().fit_transform(X)
         X = X.tocsc()
-        Y = normalize_scores(data.ups, data.subreddit[0])
+        Y = normalize_scores(data.net, data.subreddit[0])
         return X,Y
 
     def data_to_x(self, new_data):
@@ -116,7 +116,7 @@ class NGramModel(AbstractFeatureModel):
         if self.tfidf:
             X = TfidfTransformer().fit_transform(X)
         X = X.tocsc()
-        Y = normalize_scores(data.ups, data.subreddit[0])
+        Y = normalize_scores(data.net, data.subreddit[0])
         return X, Y
 
     def data_to_x(self, new_data):
@@ -154,7 +154,7 @@ class LdaFeatureModel(AbstractFeatureModel):
 
         # make X and Y
         X = self.docs_to_lda_matrix(docs)
-        Y = normalize_scores(data.ups, data.subreddit[0])
+        Y = normalize_scores(data.net, data.subreddit[0])
 
         return np.array(X), Y
 

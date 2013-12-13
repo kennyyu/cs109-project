@@ -1,0 +1,8 @@
+/usr/local/lib/python2.6/dist-packages/numpy/oldnumeric/__init__.py:11: ModuleDeprecationWarning: The oldnumeric module will be dropped in Numpy 1.9
+  warnings.warn(_msg, ModuleDeprecationWarning)
+/usr/local/lib/python2.6/dist-packages/sklearn/feature_selection/univariate_selection.py:319: UserWarning: Duplicate scores. Result may depend on feature ordering.There are probably duplicate features, or you used a classification score for a regression task.
+  warn("Duplicate scores. Result may depend on feature ordering."
+/usr/local/lib/python2.6/dist-packages/numpy/oldnumeric/__init__.py:11: ModuleDeprecationWarning: The oldnumeric module will be dropped in Numpy 1.9
+  warnings.warn(_msg, ModuleDeprecationWarning)
+/usr/local/lib/python2.6/dist-packages/sklearn/feature_selection/univariate_selection.py:319: UserWarning: Duplicate scores. Result may depend on feature ordering.There are probably duplicate features, or you used a classification score for a regression task.
+  warn("Duplicate scores. Result may depend on feature ordering."

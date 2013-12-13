@@ -243,6 +243,16 @@
                 <p><strong>Error by Reduction Model.</strong> This plot shows how the error changes as we change our reducer model. We use 6grams with 1000 as our reduced dimension size, and we use naive bayes. We used select k best, PCA using a linear kernel, and PCA using the cosine kernel.</p>
                 <img src="/img/learner_error.png"></img>
                 <p><strong>Error by Learning Model.</strong> This plot shows how the error changes as we change our learner. We tested these learners: naive bayes, SVM using a linear kernel, SVM using a radial basis function kernel, SVM using a polynomial kernel (degree 3), K nearest neighbors, and decision trees. We test all of these against (6 gram, select best 100 features) and (LDA with 1000 topics, no reducer).</p>
+                <p>You can test this predictor below. Results will probably vary from video footage we have, since the training data and parameters may have changed since then.</p>
+            </div>
+            <div class="section paddingless" id="upvote-predictor">
+                <h1>UPVOTE PREDICTOR APP</h1>
+                <textarea placeholder="TYPE YOUR COMMENT HERE..." type="text" id="comment"></textarea><div id="upvote-wrapper">
+                    <div id="comment-result">0</div>
+                    <img class="alien" src="/img/alien.jpg">
+                    <div id="upvote-subreddit">r/aww</div>
+                    <div id="upvote-button">PREDICT!</div>
+                </div>
             </div>
              <div class="section">
                 <h1>SENTENCE PREDICTION</h1>
@@ -289,6 +299,11 @@
                     <li>office depot office depot office depot office depot office depot ... (non-terminating)</li>
                 </ul>
             </div>
+            <div class="section" id="sentence-predictor">
+                <h1>SENTENCE PREDICTOR APP</h1>
+                <textarea placeholder="TYPE A WORD OR PARTIAL SENTENCE HERE..." type="text" id="word"></textarea>
+                <div id="sentence-button">WHAT WOULD R/LIBERAL SAY NEXT?</div><div id="clear-button">RESET</div>
+            </div>
             <div class="section">
                 <h1>CLUSTERING COMMENTS WITHIN SUBREDDIT</h1>
                 <p>One way of analyzing the comments in a subreddit is to perform <strong>unsupervised learning</strong> on feature vectors of the comments to determine which are "most similar" to one another. To do this, we employ K-means clustering, which attempts to find K means in the data set. We cluster using feature vectors built from the Ngram and LDA models.</p>
@@ -298,20 +313,6 @@
                 <p><strong>"Wage Increase." 83 items.</strong> wage 208, minimum 177, would 91, people 73, increase 51, cost 49, money 45, workers 45, wages 39, pay 37, business 35, prices 35, goods 35, jobs 34, less 33, raising 33, price 32, inflation 32, raise 32, economy 30, much 29, make 29, increases 28, time 27, companies 26, level 26, making 26</p>
                 <p><strong>"Trayvon Martin Case." 124 items.</strong> good 104, zimmerman 81, martin 35, evidence 16, thing 15, would 14, one 14, trayvon 14, guy 13, george 12, like 12, said 11, know 11, luck 11, really 11, could 10, people 10, think 9, fact 9, facts 9, go 8, never 8, say 8, black 8, job 8</p>
                 <p><strong>"Obamacare." 104 items.</strong> tax 133, taxes 56, would 42, income 40, people 38, rate 34, government 31, much 29, pay 28, insurance 26, money 20, think 17, want 16, health 16, even 15, spending 15, obamacare 14, actually 14, rates 14, also 14, higher 14, like 14, work 13, get 13, jobs 13, business 13</p>
-            </div>
-            <div class="section paddingless" id="upvote-predictor">
-                <h1>UPVOTE PREDICTOR APP</h1>
-                <textarea placeholder="TYPE YOUR COMMENT HERE..." type="text" id="comment"></textarea><div id="upvote-wrapper">
-                    <div id="comment-result">0</div>
-                    <img class="alien" src="/img/alien.jpg">
-                    <div id="upvote-subreddit">r/Liberal</div>
-                    <div id="upvote-button">PREDICT!</div>
-                </div>
-            </div>
-            <div class="section" id="sentence-predictor">
-                <h1>SENTENCE PREDICTOR APP</h1>
-                <textarea placeholder="TYPE A WORD OR PARTIAL SENTENCE HERE..." type="text" id="word"></textarea>
-                <div id="sentence-button">WHAT WOULD R/LIBERAL SAY NEXT?</div><div id="clear-button">RESET</div>
             </div>
         </div>
     </div>

@@ -5,13 +5,13 @@
     "random": true
   },
   "upvote": {
-    "subreddit": "data/Liberal",
+    "subreddit": "data/aww_small",
     "feature": "ngram",
     "ngram": 1,
-    "lda": 100,
     "reducer": "select",
+    "lda": "1000",
     "learner": "nb",
-    "dim": 1000
+    "dim": 3000
   },
   "server": {
     "port": 18888
