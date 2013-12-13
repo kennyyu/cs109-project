@@ -168,14 +168,22 @@ select {
     behavior: url("/lib/PIE-1.0.0/PIE.php");
     -moz-box-shadow: 0px 1px 3px #777777;
     -webkit-box-shadow: 0px 1px 3px #777777;
-    -webkit-transition: 0.2s ease opacity;
-    -moz-transition: 0.2s ease opacity;
-    -ms-transition: 0.2s ease opacity;
-    -o-transition: 0.2s ease opacity;
-    transition: 0.2s ease opacity;
     cursor: pointer; }
-    #photos img:hover {
-      opacity: .7; }
+  #photos > * {
+    position: relative;
+    opacity: 1;
+    -webkit-transition: 0.2s ease-out top;
+    -moz-transition: 0.2s ease-out top;
+    -ms-transition: 0.2s ease-out top;
+    -o-transition: 0.2s ease-out top;
+    transition: 0.2s ease-out top; }
+    #photos > *:hover {
+      -webkit-transition: 0.2s ease-in top;
+      -moz-transition: 0.2s ease-in top;
+      -ms-transition: 0.2s ease-in top;
+      -o-transition: 0.2s ease-in top;
+      transition: 0.2s ease-in top;
+      top: -5px; }
 
 #sidebar {
   position: absolute;

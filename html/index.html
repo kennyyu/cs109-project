@@ -6,18 +6,57 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
     <script type="text/javascript" src="//use.typekit.net/gzo3ist.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        <script>
-            $(document).ready(function() {
-                var htmlString = '';
-                $('.section h1').each(function(i, e) {
-                    if (i == 0)
-                        htmlString += "<li class='selected'>" + $(e).text() + "</li>";
-                    else
-                        htmlString += "<li>" + $(e).text() + "</li>";
-                });
-                $("#navigation").html(htmlString);
+    <script>
+        // pad the last section with whitespace
+        var padContentToPage = function() {
+            var lastSection = $('#site-content .section').eq('-1');
+            var windowHeight = $(window).height();
+            var padding = $(window).height() - lastSection.height();
+
+            if (padding > 0) {
+                lastSection.css({
+                    'padding-bottom': padding
+                }); 
+            }
+        };     
+
+        $(document).ready(function() {
+            padContentToPage();
+            $(window).on('resize', padContentToPage);
+
+
+            var htmlString = '';
+            $('.section h1').each(function(i, e) {
+                if (i == 0)
+                    htmlString += "<li class='selected'>" + $(e).text() + "</li>";
+                else
+                    htmlString += "<li>" + $(e).text() + "</li>";
             });
-        </script>
+            $("#navigation").html(htmlString);
+            $("#navigation").on('click', 'li', function() {
+                var scrollTo = $('.section h1:contains(' + $(this).text() + ')');
+                var scrollNew = scrollTo.position().top;
+                $('#site-content-wrapper').stop().animate({
+                    scrollTop: scrollNew
+                }); 
+            }); 
+
+            $('#site-content-wrapper').on('scroll', function() {
+                var scrollTop = $(this).scrollTop();
+                var $prev = $('#navigation li').eq(0);
+                $('.section h1').each(function(i, e) {
+                    if ($(e).position().top > scrollTop) {
+                        return false;
+                    }   
+                    $prev = $(this);
+                }); 
+
+                var $li = $('#navigation li:contains(' + $prev.text() + ')');
+                $('#navigation li').removeClass('selected');
+                $li.addClass('selected');
+            }); 
+        });
+    </script>
   </head>
   <body>
     <div id="sidebar">
@@ -30,13 +69,6 @@
             <img src="/img/ali.png"/>
         </div>
         <ul id="navigation">
-            <li>A VIDEO SUMMARY</li>
-            <li>MOTIVATION</li>
-            <li class="selected">PROBLEM AND DATASET</li>
-            <li>DATA ANALYSIS</li>
-            <li>PREDICTING UPVOTES</li>
-            <li>SENTENCE PREDICTION</li>             
-            <li>CLUSTERING COMMENTS WITHIN SUBREDDIT</li>
         </ul>
         <ul id="predictor-links">
             <li>SENTENCE PREDICTOR</li>  
@@ -46,7 +78,7 @@
     <div id="site-content-wrapper">
         <div id="site-content">
             <div class="section">
-                <h1 class="marginless">A VIDEO SUMMARYi</h1>
+                <h1 class="marginless">A VIDEO SUMMARY</h1>
                 <iframe width="800" height="450" src="//www.youtube.com/embed/azD8i4nJgQc?vq=hd1080" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="section">
