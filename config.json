@@ -1,0 +1,19 @@
+{
+  "sentence": {
+    "subreddit": "data/Liberal",
+    "ngram": 6,
+    "random": true
+  },
+  "upvote": {
+    "subreddit": "data/Liberal",
+    "feature": "ngram",
+    "ngram": 1,
+    "lda": 100,
+    "reducer": "select",
+    "learner": "nb",
+    "dim": 1000
+  },
+  "server": {
+    "port": 18888
+  }
+}

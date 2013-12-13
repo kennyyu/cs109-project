@@ -87,7 +87,8 @@ def load_subreddit(filename, fields=FIELDS):
     in the json object.
     """
     file = open(filename, "rb")
-    arrays = {field:[] for field in fields}
+    arrays = dict((field, []) for field in fields)
+    #arrays = {field:[] for field in fields}
     for line in file.readlines():
         data = json.loads(line)
         for field in fields:
@@ -151,7 +152,8 @@ def test_performance(df, model_name, learner_name, reducer_name, n_folds, dim):
 
 def clean_comment(s):
     s = s.lower()
-    s = s.translate(None, ',./?;:\'\"[]{}`~!@#$%^&*()=+_\\|')
+    for c in ',./?;:\'\"[]{}`~!@#$%^&*()=+_\\|':
+        s = s.replace(c, '')
     return s
 
 parser = argparse.ArgumentParser("Run Upvote predictor. run with python -i")

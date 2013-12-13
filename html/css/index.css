@@ -131,15 +131,19 @@ input, textarea, select {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
 
-li {
-  list-style: none; }
-
 tr {
   text-align: left; }
 
 a {
   text-decoration: none;
-  color: inherit; }
+  color: #E48B4F;
+  -webkit-transition: 0.3s opacity ease;
+  -moz-transition: 0.3s opacity ease;
+  -ms-transition: 0.3s opacity ease;
+  -o-transition: 0.3s opacity ease;
+  transition: 0.3s opacity ease; }
+  a:hover {
+    opacity: .8; }
 
 select {
   -webkit-appearance: none;
@@ -164,14 +168,22 @@ select {
     behavior: url("/lib/PIE-1.0.0/PIE.php");
     -moz-box-shadow: 0px 1px 3px #777777;
     -webkit-box-shadow: 0px 1px 3px #777777;
-    -webkit-transition: 0.2s ease opacity;
-    -moz-transition: 0.2s ease opacity;
-    -ms-transition: 0.2s ease opacity;
-    -o-transition: 0.2s ease opacity;
-    transition: 0.2s ease opacity;
     cursor: pointer; }
-    #photos img:hover {
-      opacity: .7; }
+  #photos > * {
+    position: relative;
+    opacity: 1;
+    -webkit-transition: 0.2s ease-out top;
+    -moz-transition: 0.2s ease-out top;
+    -ms-transition: 0.2s ease-out top;
+    -o-transition: 0.2s ease-out top;
+    transition: 0.2s ease-out top; }
+    #photos > *:hover {
+      -webkit-transition: 0.2s ease-in top;
+      -moz-transition: 0.2s ease-in top;
+      -ms-transition: 0.2s ease-in top;
+      -o-transition: 0.2s ease-in top;
+      transition: 0.2s ease-in top;
+      top: -5px; }
 
 #sidebar {
   position: absolute;
@@ -242,13 +254,24 @@ select {
       margin: 0px 10px 10px 10px; }
     #site-content .section p {
       margin: 0px 20px 20px 0px;
-      padding: 0px 20px 0px 20px; }
+      padding: 0px 20px 0px 20px;
+      line-height: 1.5em; }
+      #site-content .section p.caption {
+        text-align: center;
+        font-style: italic; }
+      #site-content .section p.quote {
+        border-left: 5px solid #EEE;
+        margin-left: 20px;
+        padding-left: 10px; }
     #site-content .section p, #site-content .section ol {
       color: #555; }
     #site-content .section ol {
-      padding: 10px 80px 0px 50px; }
+      margin: 0px 20px 20px 0px;
+      padding: 0px 80px 0px 50px; }
       #site-content .section ol li {
         margin-bottom: 15px; }
+    #site-content .section ul {
+      margin: 20px 20px 20px 0px; }
     #site-content .section h1 {
       margin: 0px 0px 20px 0px;
       font-size: 20px;
@@ -285,7 +308,7 @@ select {
         behavior: url("/lib/PIE-1.0.0/PIE.php"); }
     #site-content .section h2 {
       font-family: "bebas-neue";
-      margin: 0px 0px 10px 0px;
+      margin: 0px 0px 20px 0px;
       padding: 0px 20px 0px 10px;
       vertical-align: bottom;
       background-color: orange;
@@ -302,3 +325,130 @@ select {
         width: 12px;
         height: 42px;
         background-image: url("/img/ribbon.png"); }
+
+#sentence-predictor {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none; }
+  #sentence-predictor ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #FFC883; }
+  #sentence-predictor :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #FFC883; }
+  #sentence-predictor ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #FFC883; }
+  #sentence-predictor :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #FFC883; }
+  #sentence-predictor h1 {
+    margin-bottom: 0px !important; }
+  #sentence-predictor textarea, #sentence-predictor div {
+    vertical-align: bottom; }
+  #sentence-predictor textarea {
+    border: 0px;
+    width: 760px;
+    background-color: #E48B4F;
+    resize: none;
+    margin: 0px;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    height: 200px;
+    outline: none;
+    display: inline-block; }
+  #sentence-predictor #sentence-button, #sentence-predictor #clear-button {
+    display: inline-block;
+    background-color: #444;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'bebas-neue';
+    font-size: 30px;
+    line-height: 50px; }
+    #sentence-predictor #sentence-button:hover, #sentence-predictor #clear-button:hover {
+      opacity: .9; }
+  #sentence-predictor #sentence-button {
+    width: 400px; }
+  #sentence-predictor #clear-button {
+    width: 399px;
+    border-left: 1px solid #E48B4F; }
+
+#upvote-predictor ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #FFC883; }
+#upvote-predictor :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #FFC883; }
+#upvote-predictor ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #FFC883; }
+#upvote-predictor :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #FFC883; }
+#upvote-predictor h1 {
+  margin-bottom: 0px !important; }
+#upvote-predictor textarea, #upvote-predictor div {
+  vertical-align: bottom; }
+#upvote-predictor textarea {
+  border: 0px;
+  width: 600px;
+  background-color: #E48B4F;
+  resize: none;
+  margin: 0px;
+  padding: 20px;
+  font-size: 30px;
+  color: white;
+  height: 200px;
+  outline: none;
+  display: inline-block; }
+#upvote-predictor #upvote-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  height: 240px; }
+#upvote-predictor #comment-result {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  height: 80px;
+  line-height: 80px;
+  font-family: 'bebas-neue';
+  font-size: 30px;
+  color: #555;
+  text-align: center; }
+#upvote-predictor img.alien {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  width: 100px; }
+#upvote-predictor #upvote-subreddit {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 55px;
+  font-family: 'bebas-neue';
+  font-size: 20px;
+  color: #555;
+  text-align: center; }
+#upvote-predictor #upvote-button {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'bebas-neue';
+  font-size: 30px;
+  line-height: 50px; }
+  #upvote-predictor #upvote-button:hover {
+    opacity: .8; }
