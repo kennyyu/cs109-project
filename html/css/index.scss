@@ -186,6 +186,47 @@ select {
             }
         }
 
+        .grid-wrapper {
+            list-style-type: none;
+            margin: 10px 0px 30px 0px;
+            padding: 0px;
+
+            li {
+                position: relative;
+                display: inline-block;
+                margin: 0px;
+                vertical-align: bottom;
+                cursor: pointer;
+
+                a div {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    font-family: 'bebas-neue';
+                    opacity: 0;
+                    text-align: center;
+                    line-height: 94px;
+                    background-color: rgba(0, 0, 0, .6);
+                    @include transition(.3s ease opacity);
+                    color: white;
+                    font-size: 20px;
+                }
+
+                a:hover div {
+                    opacity: 1;
+                }
+
+                a img {
+                    display: inline-block;
+                    width: 160px;
+                    margin: 0px;
+                    vertical-align: bottom;
+                }
+            }
+        }
+
         p, ol {
             color: #555;
         }
