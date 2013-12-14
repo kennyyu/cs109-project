@@ -153,6 +153,33 @@ select {
   text-align: center;
   margin: 0 auto;
   margin-top: 10px; }
+  #photos .ali:after, #photos .joseph:after, #photos .kenny:after, #photos .rj:after {
+    opacity: 0;
+    position: absolute;
+    bottom: -20px;
+    padding: 4px;
+    width: 50px;
+    height: 13px;
+    text-align: center;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    behavior: url("/lib/PIE-1.0.0/PIE.php");
+    background-color: white;
+    left: 50%;
+    margin-left: -30px;
+    line-height: 14px;
+    font-size: 13px; }
+  #photos .ali:hover:after, #photos .joseph:hover:after, #photos .kenny:hover:after, #photos .rj:hover:after {
+    opacity: 1; }
+  #photos .joseph:after {
+    content: "Joseph Ong"; }
+  #photos .rj:after {
+    content: "R.J. Aquino"; }
+  #photos .kenny:after {
+    content: "Kenny Yu"; }
+  #photos .ali:after {
+    content: "Ali Nahm"; }
   #photos img {
     vertical-align: bottom;
     display: inline-block;
@@ -170,6 +197,7 @@ select {
     -webkit-box-shadow: 0px 1px 3px #777777;
     cursor: pointer; }
   #photos > * {
+    display: inline-block;
     position: relative;
     opacity: 1;
     -webkit-transition: 0.2s ease-out top;

@@ -64,10 +64,10 @@
         <h1>THE KARMA TRAIN</h1>
         <p class="subtext">A LOOK INTO THE WORLD OF REDDIT</p>
         <div id="photos">
-            <a class="joseph"><img src="/img/joseph.png"/></a>
-            <a class="rj" target="_blank" href="http://rjaquino.net"><img src="/img/rj.png"/></a>
-            <a class="kenny" target="_blank" href="http://kennyyu.me"><img src="/img/kenny.png"/></a>
-            <a class="ali"><img src="/img/ali.png"/></a>
+            <img class="joseph" src="/img/joseph.png"/>
+            <a class="rj" href="http://rjaquino.net"><img src="/img/rj.png"/></a>
+            <a class="kenny" href="http://kennyyu.me"><img src="/img/kenny.png"/></a>
+            <img class="ali" src="/img/ali.png"/>
         </div>
         <ul id="navigation">
         </ul>
