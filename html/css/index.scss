@@ -158,6 +158,10 @@ select {
 
         &.paddingless {
             padding-bottom: 0px;
+        
+            iframe {
+                vertical-align: bottom;    
+            }
         }
 
         img {

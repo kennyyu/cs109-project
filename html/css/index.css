@@ -249,6 +249,8 @@ select {
     font-size: 14px; }
     #site-content .section.paddingless {
       padding-bottom: 0px; }
+      #site-content .section.paddingless iframe {
+        vertical-align: bottom; }
     #site-content .section img {
       width: 780px;
       margin: 0px 10px 10px 10px; }
