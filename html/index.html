@@ -142,8 +142,8 @@
                 <p>
                 Our next task was to determine whether any of these metric correlated with upvotes. Below are a few graphs displaying these metrics on all comments in a particular subreddit.
                 </p>
-                <img src="/img/aww_swear.png"></img>
-                <img src="/img/funny_word_length.png"></img>
+                <img src="/img/aww_swear.png">
+                <img src="/img/funny_word_length.png">
 
                 <p>
                 We determined that these metrics would not be terribly useful as features, as they span the possible Y values.
@@ -152,7 +152,7 @@
                 <p>
                 The next features we looked at related to the posts that the comments were on. We wondered whether comments on posts with many comments had more upvotes than comments on posts without many comments. Below is a graph over the entire dataset, comparing comments per post vs net upvotes.
                 </p>
-                <img src="/img/combined_comments_per_post.png"></img>
+                <img src="/img/combined_comments_per_post.png">
                 <p>
                 Again, while there is an upward trend for the max at any X, the values still span the Y values, and is therefore not a terribly useful feature. 
                 
@@ -160,9 +160,9 @@
                 <p>
                 Next we took a look at vote decay with time - how well do comments that are posted early perform compared to those that are posted late? Below we show the number of comments by time and the average net vote count as a function of time, grouping comments by the half-hour.
                 </p>
-                <img src="/img/number_of_comments_by_time.png"></img>
+                <img src="/img/number_of_comments_by_time.png">
                 <p class="caption">The number of posts on a thread peaks four hours after the post is created.</p>
-                <img src="/img/vote_decay.png"></img>
+                <img src="/img/vote_decay.png">
                 <p class="caption">
                 We found that comments posted in the first half-hour performed best, with scores quickly decaying after that.
                 </p>
@@ -170,10 +170,19 @@
                 <p>
                 Finally, we explored certain word frequency counts and their impact on upvotes. As a cute example, here's a graph of the top 10 animal words in /r/aww, and the average upvotes comments containing those words receive.
                 </p>
-                <img src="/img/animal-graph.jpg" alt="animal image here"></img>
+                <img src="/img/animal-graph.jpg" alt="animal image here">
                 <h2>OTHER FUN STATISTICS</h2>
                 <p>
-                In our initial survey of the data, we noted some fun trends that we decided to include here. For instance, the comment with the most swear words in /r/soccer had 7 swears, whereas /r/nfl had a comment with 65 swears! /r/Liberal and /r/Conservative both have an average comment length of about 50 words, whereas /r/aww and /r/funny both average around 20 words per comment. While this info didn't ultimately impact our results, it did encourage us to work with each subreddit separately, as they clearly have different characteristics and commenting behavior.
+                In our initial survey of the data, we noted some fun trends that we decided to include here. For instance, the comment with the most swear words in /r/soccer had 7 swears, whereas /r/nfl had a comment with 65 swears! 
+                </p> 
+                <p>On other ends of the spectrum r/Liberal maxed out at only 5, and <strong>r/circlejerk at ... 236.</strong></p>
+                </p>
+                <img src="/img/curses.jpg">
+                <p>
+                /r/Liberal and /r/Conservative seem to have longer and explanatory comments, with an average comment length of about 50 words. /r/aww and /r/funny both average only around 20 words per comment. 
+                </p>
+                <p>
+                While statistics like these didn't ultimately impact our learning results, it did encourage us to work with each subreddit separately, as they clearly have different characteristics and commenting behavior.
                 </p>
                 
             </div>
@@ -189,7 +198,7 @@
                 </ol>
                 <p>If you're interested, our specifics are below.</p>
                 <h2>TECHNICALITIES</h2>
-                <img src="/img/upvotes_process.png"></img>
+                <img src="/img/upvotes_process.png">
                 <p>
                     We use the comments and upvotes data within a subreddit to build a predictor on how many votes a comment will receive on a given subreddit. We treat this problem as an example of supervised learning, where we want to perform a regression from feature vectors on text onto an upvote score. To do this, we separated the process into multiple parts.
                 </p>
@@ -233,15 +242,15 @@
                 <p>    
                 The error of a data set is the sum of all the errors of individual feature vectors <code>x</code>. Overall, we conclude that the biggest impact on the error of our data set was the feature model we chose--given the model, the target dimension size, the reduction model, and learning model had less impacts on the error.
                 </p>
-                <img src="/img/ngram_error.png"></img> 
+                <img src="/img/ngram_error.png"> 
                 <p><strong>Ngram error.</strong> This plot shows how the error changes as we increase N for our Ngram model. We hold the reducer (select 5000 best features) and learner (naive bayes) constant.</p>
-                <img src="/img/lda_error.png"></img>
+                <img src="/img/lda_error.png">
                 <p><strong>LDA error.</strong> This plot shows how the error changes as we increase the number of topics discovered by our Latent Dirichlet Model. For these experiments, we did not use a reducer, and we used naive bayes as our learner.</p>
-                <img src="/img/dim_error.png"></img>
+                <img src="/img/dim_error.png">
                 <p><strong>Reduced dimensionality error.</strong> This plot shows how the error changes as increase the reduced dimensionality size. Here, we use 6-grams, naive bayes, and we use select k best as our reducer model.</p>
-                <img src="/img/reducer_error.png"></img>
+                <img src="/img/reducer_error.png">
                 <p><strong>Error by Reduction Model.</strong> This plot shows how the error changes as we change our reducer model. We use 6grams with 1000 as our reduced dimension size, and we use naive bayes. We used select k best, PCA using a linear kernel, and PCA using the cosine kernel.</p>
-                <img src="/img/learner_error.png"></img>
+                <img src="/img/learner_error.png">
                 <p><strong>Error by Learning Model.</strong> This plot shows how the error changes as we change our learner. We tested these learners: naive bayes, SVM using a linear kernel, SVM using a radial basis function kernel, SVM using a polynomial kernel (degree 3), K nearest neighbors, and decision trees. We test all of these against (6 gram, select best 100 features) and (LDA with 1000 topics, no reducer).</p>
                 <p>You can test this predictor below. Results will probably vary from video footage we have, since the training data and parameters may have changed since then.</p>
             </div>
@@ -307,7 +316,7 @@
             <div class="section">
                 <h1>CLUSTERING COMMENTS WITHIN SUBREDDIT</h1>
                 <p>One way of analyzing the comments in a subreddit is to perform <strong>unsupervised learning</strong> on feature vectors of the comments to determine which are "most similar" to one another. To do this, we employ K-means clustering, which attempts to find K means in the data set. We cluster using feature vectors built from the Ngram and LDA models.</p>
-                <p><strong>In essence, this partitions comments into groups of topics -- this can be used to tell us the main conversations that occur in aby given subreddit.</strong></p>
+                <p><strong>In essence, this partitions comments into groups of topics -- this can be used to tell us the main conversations that occur in any given subreddit.</strong></p>
                 <p>See below for examples of clusters we found (most common words in these clusters and their counts) and a human readable name we gave to the cluster. These examples were generated on the <code>/r/Liberal</code> dataset using 1-grams with 10000 as our reduced dimension size, and creating 8 clusters:</p>
                 <h2>Cluster Examples</h2>
                 <p><strong>"Wage Increase." 83 items.</strong> wage 208, minimum 177, would 91, people 73, increase 51, cost 49, money 45, workers 45, wages 39, pay 37, business 35, prices 35, goods 35, jobs 34, less 33, raising 33, price 32, inflation 32, raise 32, economy 30, much 29, make 29, increases 28, time 27, companies 26, level 26, making 26</p>
