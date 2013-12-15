@@ -328,6 +328,10 @@ select {
           width: 160px;
           margin: 0px;
           vertical-align: bottom; }
+      #site-content .section .grid-wrapper li.medium a div {
+        line-height: 116px; }
+      #site-content .section .grid-wrapper li.medium a img {
+        width: 200px; }
     #site-content .section p, #site-content .section ol {
       color: #555; }
     #site-content .section ol {

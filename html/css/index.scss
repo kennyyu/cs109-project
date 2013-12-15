@@ -264,6 +264,16 @@ select {
                     vertical-align: bottom;
                 }
             }
+
+            li.medium {
+                a div {
+                    line-height: 116px;
+                }
+                
+                a img {
+                    width: 200px;
+                }
+            }
         }
 
         p, ol {
